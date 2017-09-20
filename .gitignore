@@ -1,0 +1,8 @@
+# Global Directories
+
+3rd-party/
+node_modules/
+packages/
+vendor/
+
+# Global Files
