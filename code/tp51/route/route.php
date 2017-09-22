@@ -13,6 +13,11 @@ Route::get('think', function () {
     return 'hello,ThinkPHP5!';
 });
 
+Route::get('__phpinfo', function () {
+    phpinfo();
+    return null;
+});
+
 Route::get('hello/:name', 'index/hello');
 
 return [

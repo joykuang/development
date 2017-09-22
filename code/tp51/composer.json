@@ -20,6 +20,9 @@
         "topthink/framework": "~5.1.0@dev",
         "aliyuncs/oss-sdk-php": "^2.2"
     },
+    "require-dev": {
+        "filp/whoops": "^2.1"
+    },
     "autoload": {
         "classmap": ["local/module"],
         "psr-4": {
@@ -32,8 +35,5 @@
     },
     "extra": {
         "think-path": "packages/topthink/framework"
-    },
-    "require-dev": {
-        "filp/whoops": "^2.1"
     }
 }

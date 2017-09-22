@@ -1,0 +1,4 @@
+# CONTRIBUTING
+
+- Joy Kuang
+- YRS
