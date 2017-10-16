@@ -1,0 +1,7 @@
+{
+	"name": "tp51",
+	"scripts": {
+		"less": "lessc src/ukmod.less public/assets/style/ukmod.css -x",
+		"zip": "composer archive --file=site --format=zip"
+	}
+}

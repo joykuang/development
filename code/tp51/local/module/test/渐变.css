@@ -1,0 +1,4 @@
+.gradient {
+    background: #f06;
+    background: linear-gradient(45deg, #f06, yellow);
+}

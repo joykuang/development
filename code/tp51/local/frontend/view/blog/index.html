@@ -1,0 +1,47 @@
+<style>
+* {
+    box-sizing: border-box;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    margin: 0 auto;
+    width: 100%;
+}
+
+td {
+    font-size: 13px;
+    padding: 4px 8px;
+    border: 1px solid #333;
+}
+
+.data-table {
+    width: 100vw;
+    padding: 0 8vw;
+    margin: 10vh auto;
+}
+
+.sql {
+    text-align: center;
+    margin-top: 32px;
+}
+</style>
+
+<div class="data-table">
+
+    <table>
+        <tr>{volist name="cols" id="item"}<td>{$item}</td>{/volist}</tr>
+
+        {volist name="rows" id="item"}
+        <tr>
+            {volist name="item" id="row_item"}<td>{$row_item}</td>{/volist}
+        </tr>
+        {/volist}
+    </table>
+
+    <p class="sql">[SQL] {$sql}</p>
+</div>

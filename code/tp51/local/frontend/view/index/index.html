@@ -1,1 +1,304 @@
-frontend/index/index
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta zhet="utf-8">
+	<title>{$page_title}</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+	<meta name="format-detection" content="telephone=no">
+	<meta name="format-detection" content="email=no">
+	<link href="/assets/3rd-party/uikit/dist/css/uikit.min.css" rel="stylesheet">
+	<!--
+		<link href="/assets/3rd-party/codemirror/lib/codemirror.css" rel="stylesheet">
+		-->
+	<link href="/assets/style/dashboard.css" rel="stylesheet">
+	<style>
+		[v-cloak] {
+			display: none;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="app" v-cloak>
+		<dashboard class="uk-flex uk-flex-center">
+			<sidebar>
+				<!--
+                    <sidebar-header>
+                        <div style="height: 80px"></div>
+                    </sidebar-header>
+					-->
+				<sidebar-content>
+					<sidebar-menu v-for="(menu_child, menu_i) in menu" :key="menu_i" :label="menu_child.label" :class="[menu_child.class, 'menu:' + menu_child.name]">
+						<sidebar-menu-item v-for="(menu_item, item_i) in menu_child.children" :key="item_i" :label="menu_item.label" :icon="menu_item.icon" :class=" ['menu:' + menu_child.name + ':' + menu_item.name, (menu_current === menu_item.name) ? 'ui-toggle' : null] " @click.native=" menu_current = menu_item.name "></sidebar-menu-item>
+					</sidebar-menu>
+				</sidebar-content>
+				<!--
+                    <sidebar-footer>
+                    </sidebar-footer>
+					-->
+			</sidebar>
+			<dashboard-content>
+				<dashboard-header label="编辑博文"></dashboard-header>
+				<container>
+					<panel class="new-post">
+						<form action="#">
+							<div class="form-row">
+								<input class="uk-input" type="text" placeholder="标题 ...">
+							</div>
+
+							<div class="form-row new-post-slug">
+								<p>固定连接：<span>http://dev.io/your-new-post</span></p>
+							</div>
+
+							<div class="form-row">
+								<ul uk-tab>
+									<li><a href="#">编辑器</a></li>
+									<li><a href="#">元数据</a></li>
+									<li><a href="#">预览</a></li>
+								</ul>
+
+								<ul class="uk-switcher uk-margin">
+									<li>
+										<ckeditor id="new-post-editor" placeholder="请尽情书写内容 ..." target="new-post-editor"></ckeditor>
+									</li>
+									<li>元数据</li>
+									<li>预览</li>
+								</ul>
+
+							</div>
+						</form>
+					</panel>
+				</container>
+			</dashboard-content>
+		</dashboard>
+	</div>
+
+	<!--
+		<script src="/assets/3rd-party/codemirror/lib/codemirror.js"></script>
+		<script src="/assets/3rd-party/codemirror/mode/htmlmixed/htmlmixed.js"></script>
+
+        <script src="/assets/3rd-party/tinymce/tinymce.min.js"></script>
+		-->
+	<script src="/assets/3rd-party/ckeditor/ckeditor.js"></script>
+	<script src="/assets/3rd-party/vue/dist/vue.js"></script>
+	<script src="/assets/3rd-party/jquery/dist/jquery.min.js"></script>
+	<script src="/assets/3rd-party/uikit/dist/js/uikit.min.js"></script>
+	<script src="/assets/3rd-party/uikit/dist/js/uikit-icons.min.js"></script>
+	<script src="/assets/script/frontend-index-index.js"></script>
+	<script src="/assets/script/backend/menu.js"></script>
+	<!--
+		<script src="/assets/script/backend/component.js"></script>
+		-->
+	<script>
+		/*function ajax() {
+						tinymce.util.XHR.send({
+						   url: 'someurl',
+						   success: function(text) {
+						      console.debug(text);
+						   }
+						});
+					}*/
+
+		function token(len) {　　
+			len = len || 32;　　
+			var zh = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+			zh += zh.toLowerCase() + '1234567890';
+			zh += zh + zh;　　
+			var max = zh.length;　　
+			var t = '';　　
+			for (i = 0; i < len; i++) {
+				if (i === 1) {
+					zh += '_-';
+					max = zh.length;
+				}　　
+				t += zh.charAt(Math.floor(Math.random() * max));
+			}
+			return t;
+		}
+
+		// 全局设置
+		/*tinymce.util.XHR.on('beforeSend', function(e) {
+		    e.xhr.setRequestHeader('YRS-AccessToken', token());
+			e.xhr.setRequestHeader('YRS-SecretToken', token(24));
+			e.xhr.setRequestHeader('YRS-Expired', (new Date).getTime());
+		});*/
+
+		App.vue('ckeditor', {
+			mounted: function() {
+				App.editor = CKEDITOR.replace(this.target, {
+					/*toolbarGroups: [
+						{ name: 'clipboard', groups: ['clipboard', 'undo'] },
+						{ name: 'editing', groups: ['find', 'selection'] },
+						{ name: 'links' },
+						{ name: 'insert', groups: ['Image', 'Link', 'Table'] },
+						{ name: 'forms' },
+						{ name: 'tools' },
+						{ name: 'document', groups: ['mode', 'document', 'doctools'] },
+						{ name: 'others' },
+						'/',
+						{ name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
+						{ name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'] },
+						{ name: 'styles' },
+						{ name: 'colors' }
+					],*/
+					toolbar: [
+						{ name: 'clipboard', items: [ 'Undo', 'Redo' ] },
+						{ name: 'styles', items: [ 'Styles', 'Format' ] },
+						{ name: 'basicstyles', items: [ 'Bold', 'Italic', 'Strike', '-', 'RemoveFormat' ] },
+						{ name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote' ] },
+						{ name: 'links', items: [ 'Link', 'Unlink' ] },
+						{ name: 'insert', items: [ 'Image', 'Table' ] },
+						{ name: 'tools', items: [ 'Maximize' ] },
+						{ name: 'editing', items: [ 'Source' ] }
+					],
+					extraPlugins: 'codemirror,image2,uploadimage,uploadfile',
+					removePlugins: 'image',
+					removeDialogTabs: 'image:advanced;link:advanced',
+					height: 540,
+					codemirror: {
+						autoCloseBrackets: true,
+						autoCloseTags: true,
+						autoFormatOnStart: true,
+						autoFormatOnUncomment: true,
+						continueComments: true,
+						enableCodeFolding: true,
+						enableCodeFormatting: true,
+						enableSearchTools: false,
+						highlightMatches: true,
+						indentWithTabs: false,
+						lineNumbers: true,
+						lineWrapping: true,
+						mode: 'htmlmixed',
+						matchBrackets: true,
+						matchTags: true,
+						showAutoCompleteButton: false,
+						showCommentButton: false,
+						showFormatButton: false,
+						showSearchButton: false,
+						showTrailingSpace: true,
+						showUncommentButton: false,
+						styleActiveLine: true,
+						theme: 'default',
+						useBeautifyOnStart: false
+					},
+					contentsCss: [
+						'/assets/3rd-party/ckeditor/contents.css',
+						'/assets/style/richtext.css'
+					],
+
+					// 上传
+					uploadUrl: '/api/test_ckeditor',
+					imageUploadUrl: '/api/test_ckeditor?image_only=1',
+
+					//filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
+					//filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?type=Images',
+					filebrowserUploadUrl: '/api/test_html',
+					filebrowserImageUploadUrl: '/api/test_html?image_only=1',
+					image2_disableResizer: true
+
+
+				});
+
+				App.editor.on('fileUploadRequest', function(e) {
+					var xhr = e.data.fileLoader.xhr;
+					xhr.setRequestHeader('YRS-AccessToken', token());
+					xhr.setRequestHeader('YRS-SecretToken', token(24));
+					xhr.setRequestHeader('YRS-Expired', (new Date).getTime());
+				});
+			}
+		});
+
+		App.run();
+	</script>
+
+	<script type="text/html" data-vue="dashboard">
+		<div class="ui-dashboard">
+			<slot></slot>
+		</div>
+	</script>
+
+	<script type="text/html" data-vue="sidebar">
+		<div class="ui-sidebar">
+			<slot></slot>
+		</div>
+	</script>
+
+	<script type="text/html" data-vue="sidebar-header">
+		<div class="ui-sidebar-header">
+			<slot></slot>
+		</div>
+	</script>
+
+	<script type="text/html" data-vue="sidebar-content">
+		<div class="ui-sidebar-content">
+			<slot></slot>
+		</div>
+	</script>
+
+	<script type="text/html" data-vue="sidebar-footer">
+		<div class="ui-sidebar-footer">
+			<slot></slot>
+		</div>
+	</script>
+
+	<script type="text/html" data-vue="sidebar-menu" data-prop="label">
+		<ul class="ui-sidebar-menu">
+			<div class="ui-sidebar-menu-label" v-if="label">{{ label }}</div>
+			<slot></slot>
+		</ul>
+	</script>
+
+	<script type="text/html" data-vue="sidebar-menu-item" data-prop="label, icon">
+		<li class="ui-sidebar-item">
+			<div class="ui-sidebar-item-label" v-if="label">
+				<svg-icon :icon="icon" v-if="icon"></svg-icon>
+				<span>{{ label }}</span>
+			</div>
+			<slot></slot>
+		</li>
+	</script>
+
+	<script type="text/html" data-vue="dashboard-content">
+		<div class="ui-content">
+			<slot></slot>
+		</div>
+	</script>
+
+	<script type="text/html" data-vue="dashboard-header" data-prop="label">
+		<div class="ui-content-header" v-if="label">{{ label }}</div>
+	</script>
+
+	<script type="text/html" data-vue="container">
+		<div class="ui-container">
+			<slot></slot>
+		</div>
+	</script>
+
+	<script type="text/html" data-vue="panel">
+		<div class="ui-panel">
+			<slot></slot>
+		</div>
+	</script>
+
+	<!--
+		<script type="text/html" data-vue="tinymce" data-prop="target">
+			<textarea class="ui-tinymce uk-textarea" rows="8"></textarea>
+        </script>
+		-->
+
+	<script type="text/html" data-vue="ckeditor" data-prop="target">
+		<textarea class="ui-ckeditor uk-textarea" rows="8"></textarea>
+	</script>
+
+	<script type="text/html" data-vue="svg-icon" data-prop="href, icon">
+		<svg class="ui-svg-icon">
+                <use :xlink:href=" href == undefined ? '/assets/image/dashicons.svg#' + icon : href " />
+            </svg>
+	</script>
+
+</body>
+
+</html>

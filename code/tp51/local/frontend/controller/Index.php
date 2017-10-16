@@ -1,28 +1,17 @@
 <?php
 namespace app\frontend\controller;
 
-use think\Controller;
-//use Composer\Autoload\ClassLoader;
+use app\common\controller\Backend;
 
-class Index extends Controller
+class Index extends Backend
 {
-
-    protected function initialize()
-    {
-
-    }
 
     public function index()
     {
-        //$loader = new ClassLoader();
-        //print_r($loader->getClassMap());
+        $assign['page_title'] = 'YRS后台控制面板';
 
+        $this->assign($assign);
         return $this->fetch();
-    }
-
-    public function _empty()
-    {
-
     }
 
 }

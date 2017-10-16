@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="utf-8">
+		<title>{$page_title}</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		<meta name="format-detection" content="telephone=no">
+		<meta name="format-detection" content="email=no">
+        <link href="/assets/3rd-party/uikit/dist/css/uikit.min.css" rel="stylesheet">
+        <link href="/assets/style/frontend-index-index.css" rel="stylesheet">
+        <style>
+            [v-cloak] { display: none; }
+        </style>
+    </head>
+    <body>
+        <div id="app" v-cloak>
+
+            <backend class="uk-flex uk-flex-center">
+
+                <sidebar>
+
+                    <sidebar-header>
+                        <div class="sidebar-header-return">
+                            <svg-icon href="/assets/image/dashicons.svg#no-alt"></svg-icon>
+                        </div>
+                        <div class="sidebar-header-buttons uk-float-right">
+                            <div class="uk-button uk-button-primary uk-button-small" disabled>发布</div>
+                        </div>
+                    </sidebar-header>
+
+                    <sidebar-content>
+
+                        <sidebar-accordion>
+
+                            <div style="height: 50px"></div>
+
+                        </sidebar-accordion>
+
+                        <sidebar-menu class="menu-theme">
+                            <sidebar-menu-item v-for="n in 3" :key="n-1" :arrow=" n === 2 ? 'disabled' : null ">
+                                <span>Theme Menu #{{ n }}</span>
+                            </sidebar-menu-item>
+                        </sidebar-menu>
+
+                        <sidebar-menu class="menu-layout">
+                            <sidebar-menu-item v-for="n in 5" :key="n-1">
+                                <span>Layout Menu #{{ n }}</span>
+                            </sidebar-menu-item>
+                        </sidebar-menu>
+
+                        <sidebar-menu class="menu-widgets">
+                            <sidebar-menu-item v-for="n in 6" :key="n-1">
+                                <span>Widgets Menu #{{ n }}</span>
+                            </sidebar-menu-item>
+                        </sidebar-menu>
+
+                    </sidebar-content>
+
+                    <sidebar-footer>
+
+                        <div class="ui-button">
+                            <svg-icon href="/assets/image/dashicons.svg#arrow-left"></svg-icon>
+                            <span class="ui-button-label">隐藏面板</span>
+                        </div>
+
+                        <div class="sidebar-footer-buttons uk-float-right">
+                            <div class="ui-device device-desktop">
+                                <svg-icon href="/assets/image/dashicons.svg#desktop"></svg-icon>
+                            </div>
+                            <div class="ui-device device-laptop">
+                                <svg-icon href="/assets/image/dashicons.svg#laptop"></svg-icon>
+                            </div>
+                            <div class="ui-device device-tablet">
+                                <svg-icon href="/assets/image/dashicons.svg#tablet"></svg-icon>
+                            </div>
+                            <div class="ui-device device-mobile">
+                                <svg-icon href="/assets/image/dashicons.svg#smartphone"></svg-icon>
+                            </div>
+                        </div>
+
+                    </sidebar-footer>
+
+                </sidebar>
+
+                <preview class="ui-content">
+
+                </preview>
+
+            </backend>
+
+        </div>
+
+        <script src="/assets/3rd-party/vue/dist/vue.js"></script>
+        <script src="/assets/3rd-party/jquery/dist/jquery.min.js"></script>
+        <script src="/assets/3rd-party/uikit/dist/js/uikit.min.js"></script>
+        <script src="/assets/3rd-party/uikit/dist/js/uikit-icons.min.js"></script>
+        <script src="/assets/script/frontend-index-index.js"></script>
+        <script>
+            App.run();
+        </script>
+
+        <script type="text/html" data-vue="backend">
+            <div class="ui-backend"><slot></slot></div>
+        </script>
+
+        <script type="text/html" data-vue="sidebar">
+            <div class="ui-sidebar"><slot></slot></div>
+        </script>
+
+        <script type="text/html" data-vue="sidebar-header">
+            <div class="ui-sidebar-header"><slot></slot></div>
+        </script>
+
+        <script type="text/html" data-vue="sidebar-content">
+            <div class="ui-sidebar-content"><slot></slot></div>
+        </script>
+
+        <script type="text/html" data-vue="sidebar-accordion">
+            <div class="ui-sidebar-accordion"><slot></slot></div>
+        </script>
+
+        <script type="text/html" data-vue="sidebar-menu">
+            <ul class="ui-sidebar-menu"><slot></slot></ul>
+        </script>
+
+        <script type="text/html" data-vue="sidebar-menu-item" data-prop="arrow">
+            <li class="ui-sidebar-menu-item">
+                <slot></slot>
+                <svg-icon
+                    class="ui-sidebar-arrow-right"
+                    href="/assets/image/dashicons.svg#arrow-right-alt2"
+                    v-if=" arrow != 'disabled' "
+                    ></svg-icon>
+            </li>
+        </script>
+
+        <script type="text/html" data-vue="sidebar-footer">
+            <div class="ui-sidebar-footer"><slot></slot></div>
+        </script>
+
+        <script type="text/html" data-vue="preview">
+            <div class="ui-preview"><slot></slot></div>
+        </script>
+
+        <script type="text/html" data-vue="svg-icon" data-prop="href">
+            <svg class="ui-svg-icon"><use :xlink:href="href" /></svg>
+        </script>
+
+    </body>
+</html>

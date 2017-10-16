@@ -35,5 +35,12 @@
     },
     "extra": {
         "think-path": "packages/topthink/framework"
+    },
+    "archive": {
+        "exclude": [
+            "packages",
+            "runtime",
+            "public/assets/3rd-party"
+        ]
     }
 }

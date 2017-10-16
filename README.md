@@ -1,6 +1,6 @@
 ## CONTENTS
 
-Projects and learning code
+My projects and program learning source code
 
 ## Projects
 

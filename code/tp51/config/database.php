@@ -10,6 +10,16 @@
 // +----------------------------------------------------------------------
 
 return [
+    'type' => 'sqlite',
+    'database' => realpath(__DIR__ . '/../database.sdb'),
+    'prefix' => 'jkc_',
+    'auto_timestamp' => true,
+    'debug' => true
+];
+
+/*
+
+return [
     // 数据库类型
     'type'            => 'mysql',
     // 服务器地址
@@ -53,3 +63,5 @@ return [
     // Query类
     'query'           => '\\think\\db\\Query',
 ];
+
+*/
