@@ -1,0 +1,23 @@
+{
+    "status": 1,
+    "response": [
+        {
+            "taxonomy_id": "1",
+            "taxonomy_parent_id": "0",
+            "taxonomy_type": "category",
+            "taxonomy_name": "默认分类",
+            "taxonomy_content": null,
+            "taxonomy_slug": "uncategoried",
+            "order_number": null
+        },
+        {
+            "taxonomy_id": "2",
+            "taxonomy_parent_id": "0",
+            "taxonomy_type": "category",
+            "taxonomy_name": "编程技术",
+            "taxonomy_content": null,
+            "taxonomy_slug": "technical-document",
+            "order_number": null
+        }
+    ]
+}

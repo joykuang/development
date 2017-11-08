@@ -21,7 +21,7 @@
 	</style>
 </head>
 
-<body>
+<body class="uk-light">
 	<div id="app" v-cloak>
 		<dashboard class="uk-flex uk-flex-center">
 			<sidebar>
@@ -55,17 +55,97 @@
 
 							<div class="form-row">
 								<ul uk-tab>
-									<li><a href="#">编辑器</a></li>
-									<li><a href="#">元数据</a></li>
-									<li><a href="#">预览</a></li>
+									<li><a href="#">内容</a></li>
+									<li><a href="#">分类</a></li>
+									<li><a href="#">数据</a></li>
 								</ul>
 
 								<ul class="uk-switcher uk-margin">
 									<li>
-										<ckeditor id="new-post-editor" placeholder="请尽情书写内容 ..." target="new-post-editor"></ckeditor>
+										<ckeditor5 id="new-post-editor" placeholder="请尽情书写内容 ..." element="div">
+											<p>测试一下</p>
+											<p>段落说一说</p>
+											<p><img src="https://unsplash.it/801/601" alt="示例图片"></p>
+											<p>分割线</p>
+											<blockquote>
+												<p>春眠不觉晓，处处闻啼鸟。</p>
+												<p>夜来风雨声，花落知多少。</p>
+											</blockquote>
+										</ckeditor5>
 									</li>
-									<li>元数据</li>
-									<li>预览</li>
+									<li>
+										<div class="ui-tab-container" uk-grid>
+											<div class="uk-width-1-2@s uk-form-horizontal" v-for="n in 2">
+
+												<div class="uk-margin">
+													<label class="uk-form-label" for="form-h-select">分类</label>
+													<div class="uk-form-controls">
+														<select class="uk-select uk-form-width-large" id="form-h-select">
+							                                    <option>Option 01</option>
+							                                    <option>Option 02</option>
+							                                </select>
+													</div>
+												</div>
+
+												<div class="uk-margin">
+													<label class="uk-form-label" for="form-h-textarea">Textarea</label>
+													<div class="uk-form-controls">
+														<textarea class="uk-textarea uk-form-width-large" id="form-h-textarea" rows="5" placeholder="Some text..."></textarea>
+													</div>
+												</div>
+
+												<div class="uk-margin">
+													<span class="uk-form-label">Radio</span>
+													<div class="uk-form-controls uk-form-controls-text">
+														<label><input class="uk-radio" type="radio" name="radio1"> Option 01</label><br>
+														<label><input class="uk-radio" type="radio" name="radio1"> Option 02</label>
+														<div class="uk-margin uk-grid-small uk-child-width-auto" uk-grid>
+															<label><input class="uk-radio" type="radio" name="radio2"> A</label>
+															<label><input class="uk-radio" type="radio" name="radio2"> B</label>
+															<label><input class="uk-radio" type="radio" name="radio2"> C</label>
+															<label><input class="uk-radio" type="radio" name="radio2"> D</label>
+														</div>
+													</div>
+												</div>
+
+												<div class="uk-margin">
+													<span class="uk-form-label">Checkbox</span>
+													<div class="uk-form-controls uk-form-controls-text">
+														<label><input class="uk-checkbox" type="checkbox"> Option 01</label><br>
+														<label><input class="uk-checkbox" type="checkbox"> Option 02</label>
+														<div class="uk-margin uk-grid-small uk-child-width-auto" uk-grid>
+															<label><input class="uk-checkbox" type="checkbox"> A</label>
+															<label><input class="uk-checkbox" type="checkbox"> B</label>
+															<label><input class="uk-checkbox" type="checkbox"> C</label>
+															<label><input class="uk-checkbox" type="checkbox"> D</label>
+														</div>
+													</div>
+												</div>
+
+												<div class="uk-margin">
+													<label class="uk-form-label" for="form-h-multiple">Multiple</label>
+													<div class="uk-form-controls">
+														<select class="uk-select uk-form-width-large" id="form-h-multiple" multiple>
+							                                    <option>Option 01</option>
+							                                    <option>Option 02</option>
+							                                    <option>Option 03</option>
+							                                    <option>Option 04</option>
+							                                </select>
+													</div>
+												</div>
+
+												<div class="uk-margin">
+													<label class="uk-form-label" for="form-h-range">Range</label>
+													<div class="uk-form-controls uk-form-controls-text">
+														<input class="uk-range uk-form-width-large" id="form-h-range" type="range" value="2" min="0" max="10" step="0.1">
+													</div>
+												</div>
+											</div>
+										</div>
+									</li>
+									<li>
+
+									</li>
 								</ul>
 
 							</div>
@@ -82,7 +162,9 @@
 
         <script src="/assets/3rd-party/tinymce/tinymce.min.js"></script>
 		-->
-	<script src="/assets/3rd-party/ckeditor/ckeditor.js"></script>
+	<!--script src="/assets/3rd-party/ckeditor/ckeditor.js"></script-->
+	<script src="/assets/script/ckeditor5.js"></script>
+	<script src="https://cdn.ckeditor.com/ckeditor5/1.0.0-alpha.1/classic/ckeditor.js" type="text/html"></script>
 	<script src="/assets/3rd-party/vue/dist/vue.js"></script>
 	<script src="/assets/3rd-party/jquery/dist/jquery.min.js"></script>
 	<script src="/assets/3rd-party/uikit/dist/js/uikit.min.js"></script>
@@ -94,13 +176,13 @@
 		-->
 	<script>
 		/*function ajax() {
-						tinymce.util.XHR.send({
-						   url: 'someurl',
-						   success: function(text) {
-						      console.debug(text);
-						   }
-						});
-					}*/
+										tinymce.util.XHR.send({
+										   url: 'someurl',
+										   success: function(text) {
+										      console.debug(text);
+										   }
+										});
+									}*/
 
 		function token(len) {　　
 			len = len || 32;　　
@@ -119,95 +201,16 @@
 			return t;
 		}
 
-		// 全局设置
-		/*tinymce.util.XHR.on('beforeSend', function(e) {
-		    e.xhr.setRequestHeader('YRS-AccessToken', token());
-			e.xhr.setRequestHeader('YRS-SecretToken', token(24));
-			e.xhr.setRequestHeader('YRS-Expired', (new Date).getTime());
-		});*/
-
-		App.vue('ckeditor', {
+		App.vue('ckeditor5', {
 			mounted: function() {
-				App.editor = CKEDITOR.replace(this.target, {
-					/*toolbarGroups: [
-						{ name: 'clipboard', groups: ['clipboard', 'undo'] },
-						{ name: 'editing', groups: ['find', 'selection'] },
-						{ name: 'links' },
-						{ name: 'insert', groups: ['Image', 'Link', 'Table'] },
-						{ name: 'forms' },
-						{ name: 'tools' },
-						{ name: 'document', groups: ['mode', 'document', 'doctools'] },
-						{ name: 'others' },
-						'/',
-						{ name: 'basicstyles', groups: ['basicstyles', 'cleanup'] },
-						{ name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'] },
-						{ name: 'styles' },
-						{ name: 'colors' }
-					],*/
-					toolbar: [
-						{ name: 'clipboard', items: [ 'Undo', 'Redo' ] },
-						{ name: 'styles', items: [ 'Styles', 'Format' ] },
-						{ name: 'basicstyles', items: [ 'Bold', 'Italic', 'Strike', '-', 'RemoveFormat' ] },
-						{ name: 'paragraph', items: [ 'NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote' ] },
-						{ name: 'links', items: [ 'Link', 'Unlink' ] },
-						{ name: 'insert', items: [ 'Image', 'Table' ] },
-						{ name: 'tools', items: [ 'Maximize' ] },
-						{ name: 'editing', items: [ 'Source' ] }
-					],
-					extraPlugins: 'codemirror,image2,uploadimage,uploadfile',
-					removePlugins: 'image',
-					removeDialogTabs: 'image:advanced;link:advanced',
-					height: 540,
-					codemirror: {
-						autoCloseBrackets: true,
-						autoCloseTags: true,
-						autoFormatOnStart: true,
-						autoFormatOnUncomment: true,
-						continueComments: true,
-						enableCodeFolding: true,
-						enableCodeFormatting: true,
-						enableSearchTools: false,
-						highlightMatches: true,
-						indentWithTabs: false,
-						lineNumbers: true,
-						lineWrapping: true,
-						mode: 'htmlmixed',
-						matchBrackets: true,
-						matchTags: true,
-						showAutoCompleteButton: false,
-						showCommentButton: false,
-						showFormatButton: false,
-						showSearchButton: false,
-						showTrailingSpace: true,
-						showUncommentButton: false,
-						styleActiveLine: true,
-						theme: 'default',
-						useBeautifyOnStart: false
-					},
-					contentsCss: [
-						'/assets/3rd-party/ckeditor/contents.css',
-						'/assets/style/richtext.css'
-					],
-
-					// 上传
-					uploadUrl: '/api/test_ckeditor',
-					imageUploadUrl: '/api/test_ckeditor?image_only=1',
-
-					//filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
-					//filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?type=Images',
-					filebrowserUploadUrl: '/api/test_html',
-					filebrowserImageUploadUrl: '/api/test_html?image_only=1',
-					image2_disableResizer: true
-
-
-				});
-
-				App.editor.on('fileUploadRequest', function(e) {
-					var xhr = e.data.fileLoader.xhr;
-					xhr.setRequestHeader('YRS-AccessToken', token());
-					xhr.setRequestHeader('YRS-SecretToken', token(24));
-					xhr.setRequestHeader('YRS-Expired', (new Date).getTime());
-				});
+				App.editor = ClassicEditor
+					.create(this.$el)
+					.then(editor => {
+						console.log(editor);
+					})
+					.catch(error => {
+						console.error(error);
+					});
 			}
 		});
 
@@ -283,20 +286,25 @@
 		</div>
 	</script>
 
-	<!--
-		<script type="text/html" data-vue="tinymce" data-prop="target">
-			<textarea class="ui-tinymce uk-textarea" rows="8"></textarea>
-        </script>
-		-->
+	<script type="text/html" data-vue="tinymce" data-prop="target">
+		<textarea class="ui-tinymce uk-textarea" rows="8"></textarea>
+	</script>
 
 	<script type="text/html" data-vue="ckeditor" data-prop="target">
-		<textarea class="ui-ckeditor uk-textarea" rows="8"></textarea>
+		<textarea class="ui-ckeditor uk-textarea" rows="8"><slot></slot></textarea>
+	</script>
+
+	<script type="text/html" data-vue="ckeditor5" data-prop="target, element">
+		<div class="ui-ckeditor uk-textarea" v-if=" element === 'div' ">
+			<slot></slot>
+		</div>
+		<textarea class="ui-ckeditor uk-textarea" rows="8" v-else><slot></slot></textarea>
 	</script>
 
 	<script type="text/html" data-vue="svg-icon" data-prop="href, icon">
 		<svg class="ui-svg-icon">
-                <use :xlink:href=" href == undefined ? '/assets/image/dashicons.svg#' + icon : href " />
-            </svg>
+        	<use :xlink:href=" href == undefined ? '/assets/image/dashicons.svg#' + icon : href " />
+        </svg>
 	</script>
 
 </body>

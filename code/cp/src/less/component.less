@@ -1,0 +1,147 @@
+
+.btn {
+    outline: none;
+    border: none;
+    border-radius: 3px;
+    display: inline-block;
+    font-size: 13px;
+    height: 32px;
+    padding: 0 12px;
+    line-height: 32px;
+    position: relative;
+    vertical-align: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    white-space: nowrap;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    font-weight: 400;
+    text-align: center;
+    text-decoration: none;
+
+    -webkit-transition: box-shadow .08s ease-in,color .08s ease-in;
+    transition: box-shadow .08s ease-in,color .08s ease-in;
+    box-shadow: 0 0 0 1px rgba(50,50,93,.1), 0 2px 5px 0 rgba(50,50,93,.08), 0 1px 1.5px 0 rgba(0,0,0,.07), 0 1px 2px 0 rgba(0,0,0,.08), 0 0 0 0 transparent;
+}
+
+.btn:hover {
+    text-decoration: none;
+    box-shadow: 0 0 0 1px rgba(50,50,93,.1), 0 2px 5px 0 rgba(50,50,93,.1), 0 3px 9px 0 rgba(50,50,93,.08), 0 1px 1.5px 0 rgba(0,0,0,.08), 0 1px 2px 0 rgba(0,0,0,.08);
+}
+
+.btn-white:hover,
+.btn-white {
+    background-color: #fff;
+    color: #32325d;
+}
+
+.btn-primary:hover,
+.btn-primary {
+    background-color: #3aa3e3;
+    color: #fff;
+}
+
+.btn-success:hover,
+.btn-success {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+.btn-danger:hover,
+.btn-danger {
+    color: #fff;
+    background-color: #e75650;
+}
+
+.btn-without-shadow,
+.btn-without-shadow:hover {
+    box-shadow: none;
+}
+
+/* 插件 :: 公共CSS */
+
+.ui-widgets { padding: 0 24px; }
+
+.ui-content-list {
+    border-radius: 3px;
+    background-color: #fff;
+    box-shadow: 0 7px 14px 0 rgba(50,50,93,.1), 0 3px 6px 0 rgba(0,0,0,.07);
+}
+
+/* 表单 :: 下拉框 */
+.select {
+    border: none;
+    background: #fff;
+    border-radius: 3px;
+    box-shadow: 0 0 0 1px rgba(50,50,93,.1), 0 2px 5px 0 rgba(50,50,93,.08), 0 1px 1.5px 0 rgba(0,0,0,.07), 0 1px 2px 0 rgba(0,0,0,.08), 0 0 0 0 transparent;
+    color: #32325d;
+    display: inline-block;
+    font-size: 13px;
+    height: 32px;
+    padding: 0 12px;
+    line-height: 32px;
+    position: relative;
+    text-shadow: none;
+    vertical-align: middle;
+    transition: box-shadow .08s ease-in,color .08s ease-in;
+
+    cursor: pointer;
+
+    display: inline-block;
+    padding-right: 32px;
+    position: relative;
+    white-space: nowrap;
+
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+
+    select {
+        color: inherit;
+        font: inherit;
+        margin: 0;
+        text-transform: none;
+        font-family: inherit;
+        font-size: inherit;
+        line-height: inherit;
+
+        -moz-appearance: none;
+        appearance: none;
+        -khtml-appearance: none;
+        -webkit-appearance: none;
+        left: 0;
+        opacity: 0;
+        position: absolute;
+        top: 0;
+        z-index: 2;
+        cursor: pointer;
+        width: 100%;
+    }
+
+}
+
+.select.select-full {
+    width: 100%;
+    display: block;
+}
+
+.select:before {
+    content: attr(data-content);
+    display: inline-block;
+    text-overflow: ellipsis;
+    width: 80%;
+}
+
+.select:after {
+    content: "";
+    display: block;
+    height: 9px;
+    right: 0;
+    position: absolute;
+    top: 10px;
+    width: 20px;
+    z-index: 0;
+    background: transparent url(../images/select.png) no-repeat 100%;
+}

@@ -1,0 +1,8 @@
+{
+    "name": "yinyangbagua",
+    "author": "Joy Kuang <q-cute@163.com>",
+    "license": "MIT",
+    "scripts": {
+        "dev": "browser-sync start --server --files=\"*.html\""
+    }
+}

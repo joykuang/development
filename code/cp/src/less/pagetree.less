@@ -1,0 +1,364 @@
+.page-tree {
+    position: relative;
+    background: #fff;
+    border-radius: 3px;
+    padding-left: 70px;
+}
+
+.page-tree ul.branches {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 1px solid #e0e0e0;
+    margin-left: 25px;
+    outline: rgba(0,0,0,.01);
+}
+
+.page-tree > ul.branches {
+    margin-left: 0;
+}
+
+.page-tree ul.empty {
+    border: 0;
+}
+
+.page-tree .branch-row,
+.page-tree ul.empty .branch {
+    border-top: 1px solid #e0e0e0;
+}
+
+.page-tree .branch-row {
+    font-size: 13px;
+    position: relative;
+}
+
+.page-tree li.branch-dragged:first-child+li > .branch-row,
+.page-tree li:first-child > .branch-row {
+    border-top: 0;
+}
+
+.page-tree .page-text {
+    display: inline-block;
+    vertical-align: middle;
+    padding: 10px 0 10px 10px;
+}
+
+.page-tree .page-url {
+    display: none;
+}
+
+.page-tree .page-extras {
+    color: #ccc;
+}
+
+.page-tree .page-entries,
+.page-tree .page-extras {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.page-tree .page-entries {
+    margin-left: 12px;
+}
+
+.page-tree .page-entries .icon,
+.page-tree .page-entries .nav-main > ul > li > a:before {
+    margin-right: 4px;
+}
+
+.page-tree .page-entries a {
+    padding: 5px 2px;
+}
+
+.page-tree .branch-meta {
+    float: right;
+}
+
+.page-tree .page-actions {
+    float: right;
+    padding: 7px 10px 0 0;
+}
+
+.page-tree .page-actions i {
+    font-size: 16px;
+    color: rgba(0,0,0,.1);
+    cursor: pointer;
+}
+
+.page-tree .page-action {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+.page-tree .action-more i {
+    transition: transform 0.2s ease;
+}
+
+.page-tree .action-more.open i {
+    transform: rotate(90deg);
+}
+
+.page-tree .page-indent {
+    position: absolute;
+    top: -1px;
+    left: 0;
+    height: 39px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.page-tree .page-indent .page-toggle {
+    position: absolute;
+    top: 0;
+    left: 20px;
+    width: 30px;
+    height: 38px;
+    text-align: center;
+    border-right: 1px solid #e0e0e0;
+    background: rgba(0,0,0,.02);
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.page-tree .page-indent .page-toggle.toggleable {
+    cursor: pointer;
+}
+
+.page-tree .page-indent .page-toggle .icon,
+.page-tree .page-indent .page-toggle .nav-main > ul > li > a:before {
+    display: inline-block;
+    position: relative;
+    top: 12px;
+    left: 0;
+    font-size: 13px;
+    color: #777;
+    transition: all 0.1s ease;
+}
+
+.page-tree .page-indent .page-toggle .collapsed {
+    transform: rotate(-90deg);
+}
+
+.page-tree .page-indent .page-move,
+.page-tree .page-indent .page-unmovable {
+    background: rgba(0,0,0,.02);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 38px;
+    width: 20px;
+}
+
+.page-tree .page-indent .indent-arrow {
+    display: block;
+    width: 11px;
+    height: 10px;
+    background: url('../images/page-arrow.png');
+    position: absolute;
+    top: 13px;
+    right: 2px;
+}
+
+.page-tree .depth-1 > .branch > .branch-row > .page-indent {
+    width: 70px;
+    left: -70px;
+}
+
+.page-tree .depth-2 > .branch > .branch-row > .page-indent {
+    width: 95px;
+    left: -95px;
+}
+
+.page-tree .depth-3 > .branch > .branch-row > .page-indent {
+    width: 120px;
+    left: -120px;
+}
+
+.page-tree .depth-4 > .branch > .branch-row > .page-indent {
+    width: 145px;
+    left: -145px;
+}
+
+.page-tree .depth-5 > .branch > .branch-row > .page-indent {
+    width: 170px;
+    left: -170px;
+}
+
+.page-tree .depth-6 > .branch > .branch-row > .page-indent {
+    width: 195px;
+    left: -195px;
+}
+
+.page-tree .depth-7 > .branch > .branch-row > .page-indent {
+    width: 220px;
+    left: -220px;
+}
+
+.page-tree .depth-8 > .branch > .branch-row > .page-indent {
+    width: 245px;
+    left: -245px;
+}
+
+.page-tree .depth-9 > .branch > .branch-row > .page-indent {
+    width: 270px;
+    left: -270px;
+}
+
+.page-tree .depth-10 > .branch > .branch-row > .page-indent {
+    width: 295px;
+    left: -295px;
+}
+
+.page-tree .branch-row:hover,
+.page-tree .branch-row:hover .page-indent {
+    background: rgba(0,0,0,.025);
+}
+
+.page-tree .branch-row:hover .page-actions i {
+    color: #676767;
+}
+
+.page-tree .depth-1 > .branch > .branch-row .page-text {
+    font-size: 14px;
+    font-weight: 500;
+    padding-top: 9px;
+}
+
+.page-tree .depth-1 > .branch > .branch-row .indent-arrow {
+    display: none;
+}
+
+.page-tree .depth-1 > .branch > .branch-row .page-move {
+    display: block;
+}
+
+.page-tree .branches-collapsed {
+    border: 0;
+}
+
+.page-tree .branches-collapsed > li.branch {
+    display: none;
+}
+
+.page-tree .branches-collapsed > li.branch-placeholder {
+    display: block;
+}
+
+.page-tree .branch-dragged {
+    background: #fff;
+    position: absolute;
+    z-index: 200;
+    box-shadow: 0 0 2px 2px rgba(63,63,68,.3),0 4px 8px rgba(63,63,68,.15);
+    border-radius: 2px;
+    border: 0;
+    opacity: 0.9;
+    width: auto!important;
+    height: auto!important;
+}
+
+.page-tree .branch-dragged .page-text {
+    padding: 3px 5px !important;
+    font-weight: 400!important;
+    font-size: 13px!important;
+}
+
+.page-tree .branch-dragged .branch-row {
+    border: 0;
+}
+
+.page-tree .branch-dragged .page-actions,
+.page-tree .branch-dragged .page-extras,
+.page-tree .branch-dragged .page-indent,
+.page-tree .branch-dragged ul {
+    display: none!important;
+}
+
+.page-tree.tree-sortable .drag-handle {
+    cursor: move;
+    cursor: grab;
+}
+
+.page-tree.tree-sortable .drag-handle:active {
+    cursor: grabbing;
+}
+
+.page-tree.tree-sortable .page-indent .page-move {
+    background: rgba(0,0,0,.02) url('../images/drag-dots.gif') 50% no-repeat;
+    border-right: 1px solid #e0e0e0;
+}
+
+.page-tree .branch-placeholder .page-text {
+    color: #479967;
+}
+
+.page-tree.show-urls .page-title {
+    display: none;
+}
+
+.page-tree.show-urls .page-url {
+    display: block;
+}
+
+.page-tree .draft .page-title {
+    color: rgba(60,72,88,.5);
+}
+
+.page-tree .draft .page-title:hover {
+    color: rgba(60,72,88,.75);
+}
+
+.page-tree .saving {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 200;
+    background: hsla(0,0%,100%,.7);
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    border-radius: 3px;
+}
+
+.page-tree .saving .inner {
+    text-align: center;
+    padding: 50px;
+    margin: 0 auto;
+}
+
+.page-tree .saving i {
+    position: relative;
+    top: -1px;
+    margin-right: 10px;
+}
+
+.page-tree .tree-home {
+    list-style: none;
+    margin: 0;
+    border: 0;
+}
+
+.page-tree .tree-home .branch-row {
+    border-top: 0;
+    cursor: default;
+}
+
+.page-tree .tree-home .page-text {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.page-tree .tree-home .page-indent {
+    width: 70px;
+    left: -70px;
+    border-top: 1px solid transparent;
+}
+
+.page-tree-dragging {
+    cursor: move;
+    cursor: rabbing;
+}

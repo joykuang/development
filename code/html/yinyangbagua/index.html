@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>阴阳八卦</title>
+
+        <style>
+            * {
+                box-sizing: border-box;
+                border: 0;
+                margin: 0;
+                padding: 0;
+            }
+
+            img {
+                vertical-align: top;
+                max-width: 100%;
+            }
+
+            .bahua {
+                border: 2px solid #000;
+                border-radius: 50%;
+                overflow: hidden;
+                margin: 10vh auto;
+
+                width: 810px;
+                height: 810px;
+
+                -webkit-transform: rotateZ(25deg);
+                transform: rotateZ(25deg);
+            }
+
+            .bahua:after {
+                display: block;
+                content: '';
+                clear: both;
+            }
+
+            .bagua-liangyi {
+                width: 50%;
+                height: 100%;
+                float: left;
+                position: relative;
+            }
+
+            .bagua-liangyi:before,
+            .bagua-liangyi:after {
+                display: block;
+                content: '';
+
+                border-radius: 50%;
+                overflow: hidden;
+
+                width: 100%;
+                height: 50%;
+
+                position: absolute;
+            }
+
+            .bagua-liangyi:before {
+                z-index: 1;
+                -webkit-transform: scale(.32);
+                transform: scale(.32);
+            }
+
+            .bagua-yin:after,
+            .bagua-yang:before,
+            .bagua-yang { background-color: #fff; }
+
+            .bagua-yang:after,
+            .bagua-yin:before,
+            .bagua-yin { background-color: #000; }
+
+            .bagua-yang:after { top: 0; left: 50%; }
+            .bagua-yin:after { bottom: 0; right: 50%; }
+
+            .bagua-yang:before { top: 0; left: 50%; }
+            .bagua-yin:before { bottom: 0; right: 50%; }
+        </style>
+    </head>
+    <body>
+        <div class="bahua">
+            <div class="bagua-liangyi bagua-yang"></div>
+            <div class="bagua-liangyi bagua-yin"></div>
+        </div>
+    </body>
+</html>

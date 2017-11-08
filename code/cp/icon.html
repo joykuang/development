@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>WordPress Icons</title>
+
+        <style>
+            * {
+                box-sizing: border-box;
+                border: 0;
+                margin: 0;
+                padding: 0
+            }
+
+            .svg {
+                display: none;
+            }
+
+            .icons {
+                /* max-width: 1200px; */
+                margin: 0 auto;
+                padding: 24px;
+            }
+
+            .icons:after {
+                display: block;
+                content: '';
+                clear: both;
+            }
+
+            .svg-icon {
+                width: 12.5%;
+                float: left;
+                text-align: center;
+                padding: 12px 0;
+            }
+
+            .icon {
+                width: 36px;
+                height: 36px;
+                fill: #666;
+            }
+
+            .name {
+                color: #777;
+                height: 36px;
+                font-size: 13px;
+                padding: 0 16px;
+                margin-top: 8px;
+                line-height: 18px;
+                /* white-space: nowrap; */
+            }
+
+            @media (min-width: 1900px) {
+                .svg-icon { width: 10%; }
+            }
+
+            @media (min-width: 2540px) {
+                .svg-icon { width: 6.25%; }
+            }
+
+            [v-cloak] { display: none; }
+
+        </style>
+    </head>
+    <body>
+        <div id="app" v-cloak>
+            <div class="svg" v-html="html"></div>
+            <div class="icons">
+                <div class="svg-icon" v-for="(item, key) in icon">
+                    <svg class="icon"><use :xlink:href=" '#' + item  " /></svg>
+                    <div class="name">{{ item }}</div>
+                </div>
+            </div>
+        </div>
+        <script src="/node_modules/vue/dist/vue.js"></script>
+        <script src="/node_modules/axios/dist/axios.min.js"></script>
+        <script type="text/javascript">
+            new Vue({
+                el: '#app',
+                data: {
+                    html: [],
+                    icon: []
+                },
+                mounted: function() {
+                    var vm = this;
+                    var dom = document.createElement('div');
+                    var ajaxUrl = '/src/images/wpicons.svg';
+
+                    axios.get(ajaxUrl).then(function(response) {
+                        vm.html = response.data;
+                        dom.innerHTML = response.data;
+
+                        var icon = dom.querySelectorAll('symbol');
+                        var name = [];
+
+                        for (var i in icon) name.push(icon[i].id);
+                        vm.icon = name;
+                    });
+                }
+            });
+        </script>
+
+        <script type="text/x-template">
+
+        </script>
+    </body>
+</html>

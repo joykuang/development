@@ -83,3 +83,96 @@ App.vue('tinymce', {
         });
     }
 });
+
+App.vue('ckeditor', {
+    mounted: function() {
+        App.editor = CKEDITOR.replace(this.$el, {
+            toolbar: [{
+                    name: 'clipboard',
+                    items: ['Undo', 'Redo']
+                },
+                {
+                    name: 'styles',
+                    items: ['Styles', 'Format']
+                },
+                {
+                    name: 'basicstyles',
+                    items: ['Bold', 'Italic', 'Strike', '-', 'RemoveFormat']
+                },
+                {
+                    name: 'paragraph',
+                    items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote']
+                },
+                {
+                    name: 'links',
+                    items: ['Link', 'Unlink']
+                },
+                {
+                    name: 'insert',
+                    items: ['Image', 'Table']
+                },
+                {
+                    name: 'tools',
+                    items: ['Maximize']
+                },
+                {
+                    name: 'editing',
+                    items: ['Source']
+                }
+            ],
+            extraPlugins: 'codemirror,image2,uploadimage,uploadfile',
+            removePlugins: 'image',
+            removeDialogTabs: 'image:advanced;link:advanced',
+            height: 540,
+            codemirror: {
+                autoCloseBrackets: true,
+                autoCloseTags: true,
+                autoFormatOnStart: true,
+                autoFormatOnUncomment: true,
+                continueComments: true,
+                enableCodeFolding: true,
+                enableCodeFormatting: true,
+                enableSearchTools: false,
+                highlightMatches: true,
+                indentWithTabs: false,
+                lineNumbers: true,
+                lineWrapping: true,
+                mode: 'htmlmixed',
+                matchBrackets: true,
+                matchTags: true,
+                showAutoCompleteButton: false,
+                showCommentButton: false,
+                showFormatButton: false,
+                showSearchButton: false,
+                showTrailingSpace: true,
+                showUncommentButton: false,
+                styleActiveLine: true,
+                theme: 'default',
+                useBeautifyOnStart: false
+            },
+            contentsCss: [
+                '/assets/3rd-party/ckeditor/contents.css',
+                '/assets/style/richtext.css'
+            ],
+
+            // 上传
+            uploadUrl: '/api/test_ckeditor',
+            imageUploadUrl: '/api/test_ckeditor?image_only=1',
+
+            //filebrowserBrowseUrl: '/ckfinder/ckfinder.html',
+            //filebrowserImageBrowseUrl: '/ckfinder/ckfinder.html?type=Images',
+            filebrowserUploadUrl: '/api/test_html',
+            filebrowserImageUploadUrl: '/api/test_html?image_only=1',
+            image2_disableResizer: true
+
+
+        });
+
+        App.editor.on('fileUploadRequest', function(e) {
+            var xhr = e.data.fileLoader.xhr;
+            xhr.setRequestHeader('YRS-AccessToken', token());
+            xhr.setRequestHeader('YRS-SecretToken', token(24));
+            xhr.setRequestHeader('YRS-Expired', (new Date).getTime());
+        });
+    }
+});

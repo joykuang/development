@@ -4,9 +4,9 @@ namespace app\frontend\controller;
 
 use think\Db;
 use think\facade\Config;
-use think\Controller;
+use app\common\controller\Backend;
 
-class Blog extends Controller
+class Blog extends Backend
 {
 
     protected $db;
@@ -36,14 +36,17 @@ class Blog extends Controller
                     ->where('p.post_type', '=', 'post')
                     ->whereOr('p.post_type', '=', 'page');
             })
-            ->where('p.post_status', '=', 'published')
+            //->where('p.post_status', '=', 'published')
             ->select();
 
         $sql = Db::getLastSql();
+        $cols = array_merge(array_keys($cols), ['taxonomy_id', 'taxonomy_name', 'taxonomy_slug']);
 
-        $assign['cols'] = array_merge(array_keys($cols), ['taxonomy_id', 'taxonomy_name', 'taxonomy_slug']);
+        $assign['cols'] = $cols;
         $assign['rows'] = $rows;
         $assign['sql'] = $sql;
+
+        if ($this->request->get('format') === 'json') return json([ 'status' => 1, 'response' => $rows ]);
 
         $this->assign($assign);
         return $this->fetch();
@@ -56,9 +59,13 @@ class Blog extends Controller
         $rows = Db::name('taxonomies')->where('taxonomy_parent_id', '=', 0)->select();
         $sql = Db::getLastSql();
 
-        $assign['cols'] = array_keys($cols);
+        $cols = array_keys($cols);
+
+        $assign['cols'] = $cols;
         $assign['rows'] = $rows;
         $assign['sql'] = $sql;
+
+        if ($this->request->get('format') === 'json') return json([ 'status' => 1, 'response' => $rows ]);
 
         $this->assign($assign);
         return $this->fetch('index');

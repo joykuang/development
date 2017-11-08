@@ -43,5 +43,5 @@ td {
         {/volist}
     </table>
 
-    <p class="sql">[SQL] {$sql}</p>
+    <p class="sql">[SQL] {$sql|str_replace="`","",###}</p>
 </div>

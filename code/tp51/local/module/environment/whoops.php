@@ -1,13 +1,14 @@
 <?php
 
-use think\facade\Config;
 use Whoops\Run as WhoopsRun;
 use Whoops\Util\Misc;
 use Whoops\Handler\PrettyPageHandler;
 use Whoops\Exception\Inspector;
 
+use think\facade\Config;
+
 Config::set('exception_handle', '\\Whoops\\Exception\\ErrorException');
-ini_set('error_log', App::getRuntimePath() . 'log/php_errors.log');
+ini_set('error_log', realpath(App::getRuntimePath()) . '/log/php_errors.log');
 
 $config = Config::get();
 defined('IS_AJAX') || define('IS_AJAX', Misc::isAjaxRequest());

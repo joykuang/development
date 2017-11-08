@@ -24,3 +24,15 @@
 ### Updated
 
 - Update Code/TP51
+
+## 0.0.0 alpha 3 (2017-11-08)
+
+### Added
+
+- Add Cli Tool
+- Add HTML Template
+- Add Control Panel Project
+
+### Updated
+
+- Update Code/TP51

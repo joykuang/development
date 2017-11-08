@@ -1,0 +1,11 @@
+{
+    "name": "tool_cli",
+    "author": "Joy Kuang <q-cute@163.com>",
+    "license": "MIT",
+    "config": {
+        "vendor-dir": "packages"
+    },
+    "require": {
+        "composer/composer": "^1.5"
+    }
+}

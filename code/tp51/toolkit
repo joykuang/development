@@ -1,0 +1,32 @@
+#!/usr/bin/env php
+
+<?php
+
+use think\Console;
+use think\Container;
+
+define('CWD_PATH', __DIR__);
+define('APP_PATH', CWD_PATH . '/local/');
+
+require CWD_PATH . '/packages/autoload.php';
+require CWD_PATH . '/packages/topthink/framework/base.php';
+
+Container::get('app', [APP_PATH])->initialize();
+Console::init();
+
+/*
+
+https://tim.qq.com/cgi/static/fuli/index.html?ptlang=2052
+https://baike.baidu.com/calendar
+https://baike.baidu.com/
+https://design.google/library/airbnb-communicating-clarity-and-charm/
+https://design.google/library/fabulous-motivating-app-engagement/
+https://ant.design/docs/spec/proximity-cn
+https://demo.yootheme.com/themes/wordpress/2017/morgan-consulting/wp-admin/customize.php
+http://dev.io/cp/collections
+http://localhost:8081/
+http://dev.io:8080/ui/index
+
+*/
+
+// 

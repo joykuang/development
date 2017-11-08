@@ -13,7 +13,7 @@ Route::get('think', function () {
     return 'hello,ThinkPHP5!';
 });
 
-Route::get('__phpinfo', function () {
+Route::get('phpinfo', function () {
     phpinfo();
     return null;
 });
