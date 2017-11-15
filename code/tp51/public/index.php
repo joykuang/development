@@ -1,19 +1,21 @@
 <?php
 
 use think\Container;
-use think\facade\Hook;
-use Composer\Autoload\ClassLoader as Composer;
 
-define('APP_PATH', __DIR__ . '/../local/');
+define('STATUS', 1);
+define('CWD_PATH', __DIR__);
+define('APP_PATH', dirname(CWD_PATH) . '/local/');
 
-require __DIR__ . '/../packages/autoload.php';
-require __DIR__ . '/../packages/topthink/framework/base.php';
-
-Hook::add('app_init', function() {
-    $done = (new Composer)->register();
-    trace(var_export($done, true));
-});
+if (!!STATUS) {
+    require_once dirname(CWD_PATH) . '/local/bootstrap.php';
+} else {
+    require_once dirname(CWD_PATH) . '/packages/autoload.php';
+    require_once dirname(CWD_PATH) . '/packages/topthink/framework/base.php';
+}
 
 Container::get('app', [APP_PATH])->run()->send();
 
-dumpinclude();
+function_exists('dumpinclude') && dumpinclude();
+
+$loader = new \think\Loader();
+file_put_contents('loader.json', json_encode(['classmap' => $loader->getClassMap(), 'psr-4' => $loader->getPrefixesPsr4()], JSON_PRETTY_PRINT));

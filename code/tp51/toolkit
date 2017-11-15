@@ -5,11 +5,9 @@
 use think\Console;
 use think\Container;
 
-define('CWD_PATH', __DIR__);
-define('APP_PATH', CWD_PATH . '/local/');
+define('APP_PATH', __DIR__ . '/local/');
 
-require CWD_PATH . '/packages/autoload.php';
-require CWD_PATH . '/packages/topthink/framework/base.php';
+require_once __DIR__ . '/local/bootstrap.php';
 
 Container::get('app', [APP_PATH])->initialize();
 Console::init();
@@ -28,5 +26,3 @@ http://localhost:8081/
 http://dev.io:8080/ui/index
 
 */
-
-// 

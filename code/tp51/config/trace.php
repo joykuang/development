@@ -15,5 +15,5 @@
 return [
     // 内置Html Console 支持扩展
     'type' => 'Html',
-    'file' => APP_PATH . 'module/tpmod/page_trace.tpl'
+    'file' => __DIR__ . '/trace.tpl'
 ];

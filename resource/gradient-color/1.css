@@ -1,0 +1,6 @@
+
+.button.hot,
+.hot.label {
+    background-color: #FF469C;
+    background-image: linear-gradient(90deg,#FF469C 0,#FF4646 100%);
+}
