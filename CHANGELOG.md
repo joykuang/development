@@ -36,3 +36,16 @@
 ### Updated
 
 - Update Code/TP51
+
+## 0.0.0 alpha 4 (2017-11-19)
+
+### Added
+
+- Add `Code/Meituan` Meituan Mobile Site Copy
+- Add `Code/TP51` database directory and mysql dump files
+- Add `Code/TP51` new feature: Moduler and Composer Loader
+
+### Updated
+
+- Update `Code/TP51` File Construction
+- Update `Code/TP51` composer.json, running scripts and entry file

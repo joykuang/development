@@ -4,7 +4,7 @@ use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
 use Composer\Autoload\ClassLoader;
 
-$conn = class_exists('think\facade\Config') ? \think\facade\Config::get('doctrine') : require_once './config/doctrine.php';
+$conn = class_exists('think\facade\Config') ? \think\facade\Config::pull('doctrine') : require_once './config/doctrine.php';
 
 if (is_null($conn) || !is_array($conn)) {
     throw new \ErrorException('Doctrine Connection Failed');

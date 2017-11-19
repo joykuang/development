@@ -3,3 +3,6 @@ packages/
 runtime/
 
 composer.lock
+composer-inc.json
+debug_backtrace.json
+

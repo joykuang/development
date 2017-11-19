@@ -21,7 +21,8 @@
         "doctrine/orm": "^2.5"
     },
     "require-dev": {
-        "filp/whoops": "^2.1"
+        "filp/whoops": "^2.1",
+        "fzaninotto/faker": "^1.7"
     },
     "require-backup": {
         "guzzlehttp/guzzle": "^6.3",
@@ -29,15 +30,15 @@
     },
     "autoload": {
         "classmap": [
-            "local/core",
-            "local/module"
+            "thoughts/module",
+            "thoughts/system"
         ]
     },
     "config": {
         "preferred-install": "dist",
         "vendor-dir": "packages"
     },
-    "extra": {
+    "extra0": {
         "think-path": "packages/topthink/framework"
     },
     "archive": {
@@ -47,9 +48,18 @@
             "public/assets/3rd-party"
         ]
     },
-    "scripts-backup": {
+    "scripts": {
+        "command__BAK": [
+            "YRS\\Console\\ComposerScripts::command"
+        ],
+        "pre-install-cmd": [
+            "YRS\\Console\\ComposerScripts::preUpdate"
+        ],
+        "pre-update-cmd": [
+            "YRS\\Console\\ComposerScripts::preUpdate"
+        ],
         "post-update-cmd": [],
-        "post-autoload-dump": [
+        "post-autoload-dump__BAK": [
             "YRS\\Console\\ComposerScripts::postAutoloadDump"
         ]
     }

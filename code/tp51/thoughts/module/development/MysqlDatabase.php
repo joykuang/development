@@ -1,18 +1,20 @@
 <?php
 namespace YRS\Moduler;
 
+use YRS\Core\Moduler;
 use think\facade\Config;
+//use think\Container;
 
 class MysqlDatabase extends Moduler
 {
 
     public function boot() {
 
-        $_conn = Config::get('database');
+        $_conn = Config::pull('database');
 
         $conn = [
             'type' => 'mysql',
-            'hostname' => '127.0.0.1',
+            'hostname' => 'localhost',
             'database' => 'tp51',
             'username' => 'root',
             'password' => 'root',
@@ -21,7 +23,9 @@ class MysqlDatabase extends Moduler
             'debug' => true
         ];
 
-        Config::set('database', array_merge($_conn, $conn));
+        $merge = array_merge($_conn, $conn);
+
+        Config::set($merge, 'database');
 
     }
 }

@@ -71,4 +71,28 @@ class Blog extends Backend
         return $this->fetch('index');
     }
 
+    public function doctrine()
+    {
+        //$manager = entity();
+        //$product = $manager->find(getClass('Record'), 1);
+
+        //var_dump($product->getContent());
+
+
+        $faker = \Faker\Factory::create('zh_CN');
+
+        $data = [
+            $faker->name,
+            $faker->address,
+            $faker->text,
+            $faker->company,
+            $faker->jobTitle,
+            $faker->creditCardNumber,
+            $faker->phoneNumber,
+            $faker->file(__DIR__)
+        ];
+
+        echo implode('<br>', $data);
+    }
+
 }

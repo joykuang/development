@@ -33,23 +33,6 @@ class Loader extends ClassLoader
     }
 
     /**
-     * 注册命名空间
-     * @param array|string $namespace 命名空间或者命名空间前缀
-     * @param string $path 对应源文件路径
-     */
-    public static function addNamespace($namespace, $path = '')
-    {
-        $_this = new static();
-        if (is_array($namespace)) {
-            foreach ($namespace as $prefix => $paths) {
-                $_this->addPsr4($prefix . '\\', rtrim($paths, DIRECTORY_SEPARATOR), true);
-            }
-        } else {
-            $_this->addPsr4($namespace . '\\', rtrim($path, DIRECTORY_SEPARATOR), true);
-        }
-    }
-
-    /**
      * 字符串命名风格转换
      * type 0 将Java风格转换为C的风格 1 将C风格转换为Java的风格
      * @param string  $name 字符串
