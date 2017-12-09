@@ -1,47 +1,61 @@
-<style>
-* {
-    box-sizing: border-box;
-    border: 0;
-    margin: 0;
-    padding: 0;
-}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>博文列表</title>
+        <style>
+        * {
+            box-sizing: border-box;
+            border: 0;
+            margin: 0;
+            padding: 0;
+        }
 
-table {
-    border-collapse: collapse;
-    border-spacing: 0;
-    margin: 0 auto;
-    width: 100%;
-}
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            margin: 0 auto;
+            width: 100%;
+        }
 
-td {
-    font-size: 13px;
-    padding: 4px 8px;
-    border: 1px solid #333;
-}
+        td {
+            font-size: 13px;
+            padding: 4px 8px;
+            border: 1px solid #333;
+        }
 
-.data-table {
-    width: 100vw;
-    padding: 0 8vw;
-    margin: 10vh auto;
-}
+        .data-table {
+            width: 100vw;
+            padding: 0 8vw;
+            margin: 10vh auto;
+        }
 
-.sql {
-    text-align: center;
-    margin-top: 32px;
-}
-</style>
+        .sql {
+            text-align: center;
+            margin-top: 32px;
+        }
+        </style>
+    </head>
+    <body>
 
-<div class="data-table">
+        <div class="data-table">
 
-    <table>
-        <tr>{volist name="cols" id="item"}<td>{$item}</td>{/volist}</tr>
+            <table>
+                <tr>{volist name="cols" id="item"}<td>{$item}</td>{/volist}</tr>
 
-        {volist name="rows" id="item"}
-        <tr>
-            {volist name="item" id="row_item"}<td>{$row_item}</td>{/volist}
-        </tr>
-        {/volist}
-    </table>
+                {volist name="rows" id="item"}
+                <tr>
+                    {volist name="item" id="row_item"}<td>{$row_item}</td>{/volist}
+                </tr>
+                {/volist}
+            </table>
 
-    <p class="sql">[SQL] {$sql|str_replace="`","",###}</p>
-</div>
+            <p class="sql">[SQL] {$sql|str_replace="`","",###}</p>
+        </div>
+        <script src="/_debugbar/resources/axios.min.js" type="text/javascript"></script>
+        <script src="/_debugbar/resources/vue.min.js" type="text/javascript"></script>
+        <script>
+
+        </script>
+    </body>
+</html>

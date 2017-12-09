@@ -1,0 +1,7 @@
+{
+    "name": "debugbar",
+    "dependencies": {
+        "axios": "^0.17.1",
+        "vue": "^2.5.9"
+    }
+}

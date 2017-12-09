@@ -1,6 +1,8 @@
 <?php
 namespace YRS;
 
+use Exception;
+
 class DebugBar
 {
     protected static $file = null;
@@ -9,9 +11,31 @@ class DebugBar
 
     protected static $json = [];
 
+    public static function vue($minify = true)
+    {
+        $file = __DIR__ . '/resources/vue/vue' . ($minify ? '.min' : '') . '.js';
+        return file_get_contents($file);
+    }
+
+    public static function axios($minify = true)
+    {
+        $file = __DIR__ . '/resources/axios/axios' . ($minify ? '.min' : '') . '.js';
+        return file_get_contents($file);
+    }
+
     public static function start($base)
     {
-        if (!is_dir($base)) throw new \Exception("Error path", 1);
+        if (!is_dir($base)) {
+            // TODO: 检测文件夹是否存在以及能否创建
+            // throw new Exception("Error path", 1);
+            try {
+                mkdir($base, 0775, true);
+            } catch (Exception $e) {
+                print $e->getMessage();
+                exit();
+            }
+
+        }
 
         if (isset($_COOKIE['yrs_debugbar__uuid'])) {
             $uuid = $_COOKIE['yrs_debugbar__uuid'];
@@ -33,8 +57,8 @@ class DebugBar
     {
         $file = self::$file;
 
-        if (is_null($file)) throw new \Exception("Please Debug::start() first", 1);
-        if (!is_file($file)) throw new \Exception("No debug file", 1);
+        if (is_null($file)) throw new Exception("Please Debug::start() first", 1);
+        if (!is_file($file)) throw new Exception("No debug file", 1);
 
         $json = file_get_contents($file, $file);
         $tidy = json_decode($json, true);
@@ -51,8 +75,8 @@ class DebugBar
     {
         $file = self::$file;
 
-        if (is_null($file)) throw new \Exception("Please Debug::start() first", 1);
-        if (!is_file($file)) throw new \Exception("No debug file", 1);
+        if (is_null($file)) throw new Exception("Please Debug::start() first", 1);
+        if (!is_file($file)) throw new Exception("No debug file", 1);
 
         $json = file_get_contents($file, $file);
         $tidy = json_decode($json, true);

@@ -12,7 +12,6 @@ Route::get('think', function () {
 
 Route::get('phpinfo', function () {
     phpinfo();
-    abort(404);
     return null;
 });
 
