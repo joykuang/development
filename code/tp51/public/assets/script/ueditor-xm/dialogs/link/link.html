@@ -1,0 +1,242 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <script type="text/javascript" src="../internal.js"></script>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            color: #838383;
+        }
+
+        table {
+            font-size: 12px;
+            line-height: 30px;
+            margin-top: 20px;
+        }
+
+        .txt {
+            width: 300px;
+            text-indent: 10px;
+            height: 38px;
+            width: 448px;
+            line-height: 38px;
+            border: 1px solid #d7d7d7;
+            outline: none;
+            margin-bottom: 10px;
+            *width: 446px;
+            *text-indent: 0;
+        }
+
+        label {
+            font-size: 12px;
+            color: #000;
+            line-height: 30px;
+            width: 100%;
+            display: block;
+        }
+
+        .checkspan {
+            display: inline-block;
+            width: 14px;
+            height: 14px;
+            background: #fff;
+            text-indent: 20px;
+            overflow: hidden;
+            vertical-align: middle;
+            border: 1px solid #dfdfdf;
+        }
+
+        .center {
+            background: #fff url('images/check_center.png') 0 0 no-repeat;
+        }
+
+        #target {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <tr>
+            <td><label for="text"> <var id="lang_input_text"></var></label><input class="txt" id="text" type="text" disabled="true" /></td>
+        </tr>
+        <tr>
+            <td><label for="href"> <var id="lang_input_url"></var></label><input class="txt" id="href" type="text" /></td>
+        </tr>
+        <tr>
+            <td><label for="title"> <var id="lang_input_title"></var></label><input class="txt" id="title" type="text" /></td>
+        </tr>
+        <tr>
+            <td>
+                <label for="target"><var id="lang_input_target"></var><input id="target" type="checkbox"/>
+                 <span class='checkspan'></span></label>
+
+            </td>
+        </tr>
+        <tr>
+            <td id="msg"></td>
+        </tr>
+    </table>
+    <script type="text/javascript">
+        var checkspan = '';
+        var ospan = document.getElementsByTagName("span");
+        for (var i = 0; i < ospan.length; i++) {
+            if (ospan[i].className == 'checkspan') {
+                checkspan = ospan[i]
+            }
+
+        }
+
+        var oInput = document.getElementById("target");
+
+
+
+        function hasClass(obj, cls) {
+            return obj.className.match(new RegExp('(\\s|^)' + cls + '(\\s|$)'));
+        }
+
+        function addClass(obj, cls) {
+            if (!this.hasClass(obj, cls)) obj.className += " " + cls;
+            $G("target").checked.checked = true;
+            $G("target").checked = true;
+        }
+
+        function removeClass(obj, cls) {
+            if (hasClass(obj, cls)) {
+                var reg = new RegExp('(\\s|^)' + cls + '(\\s|$)');
+                obj.className = obj.className.replace(reg, ' ');
+                $G("target").checked = false;
+            }
+            $G("target").checked = false;
+        }
+
+        function toggleClass(obj, cls) {
+            if (hasClass(obj, cls)) {
+                removeClass(obj, cls);
+                $G("target").checked = false;
+            } else {
+                addClass(obj, cls);
+                $G("target").checked = true;
+            }
+        }
+
+        function addEvents(target, type, func) {
+            if (target.addEventListener) //非ie 和ie9
+                target.addEventListener(type, func, false);
+            else if (target.attachEvent) //ie6到ie8
+                target.attachEvent("on" + type, func);
+            else target["on" + type] = func; //ie5
+        }
+
+        var f = '';
+        addEvents(checkspan, 'click', function() {
+            toggleClass(checkspan, 'center');
+            f = $G("target").checked;
+        });
+        //默认勾选状态
+        checkspan.click();
+        /**
+         * 过滤xss
+         */
+        function escape(html) {
+            return String(html)
+                .replace(/&(?!\w+;)/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+        var range = editor.selection.getRange(),
+            link = range.collapsed ? editor.queryCommandValue("link") : editor.selection.getStart(),
+            url,
+            text = $G('text'),
+            rangeLink = domUtils.findParentByTagName(range.getCommonAncestor(), 'a', true),
+            orgText;
+        link = domUtils.findParentByTagName(link, "a", true);
+        if (link) {
+            url = utils.html(link.getAttribute('_href') || link.getAttribute('href', 2));
+            url = escape(url);
+            if (rangeLink === link && !link.getElementsByTagName('img').length) {
+                text.removeAttribute('disabled');
+                orgText = text.value = link[browser.ie ? 'innerText' : 'textContent'];
+            } else {
+                text.setAttribute('disabled', 'true');
+                text.value = lang.validLink;
+            }
+
+        } else {
+            if (range.collapsed) {
+                text.removeAttribute('disabled');
+                text.value = '';
+            } else {
+                text.setAttribute('disabled', 'true');
+                text.value = lang.validLink;
+            }
+
+        }
+        $G("title").value = url ? link.title : "";
+        $G("href").value = url ? url : '';
+        $G("target").checked = url && link.target == "_blank" ? true : false;
+        $focus($G("href"));
+
+        function handleDialogOk() {
+            var href = $G('href').value.replace(/^\s+|\s+$/g, '');
+            href = escape(href);
+            if (href) {
+                if (!hrefStartWith(href, ["http", "/", "ftp://", '#'])) {
+                    href = "http://" + href;
+                }
+                var obj = {
+                    'href': href,
+                    'target': f ? "_blank" : '_self',
+                    'title': $G("title").value.replace(/^\s+|\s+$/g, ''),
+                    '_href': href
+                };
+                //修改链接内容的情况太特殊了，所以先做到这里了
+                //todo:情况多的时候，做到command里
+                if (orgText && text.value != orgText) {
+                    link[browser.ie ? 'innerText' : 'textContent'] = obj.textValue = text.value;
+                    range.selectNode(link).select()
+                }
+                if (range.collapsed) {
+                    obj.textValue = text.value;
+                }
+                editor.execCommand('link', utils.clearEmptyAttrs(obj));
+                dialog.close();
+            }
+        }
+        dialog.onok = handleDialogOk;
+        $G('href').onkeydown = $G('title').onkeydown = function(evt) {
+            evt = evt || window.event;
+            if (evt.keyCode == 13) {
+                handleDialogOk();
+                return false;
+            }
+        };
+        $G('href').onblur = function() {
+            if (!hrefStartWith(this.value, ["http", "/", "ftp://", '#'])) {
+                $G("msg").innerHTML = "<span style='color:#f62121'>" + lang.httpPrompt + "</span>";
+            } else {
+                $G("msg").innerHTML = "";
+            }
+        };
+
+        function hrefStartWith(href, arr) {
+            href = href.replace(/^\s+|\s+$/g, '');
+            for (var i = 0, ai; ai = arr[i++];) {
+                if (href.indexOf(ai) == 0) {
+                    return true;
+                }
+            }
+            return false;
+        }
+    </script>
+</body>
+
+</html>

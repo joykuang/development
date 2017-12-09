@@ -1,0 +1,18 @@
+{
+    "state": "SUCCESS",
+    "url": "http:\/\/cdn.fds.api.xiaomi.com\/b2c-bbs\/cn\/attachment\/feed40eea3b9b3bfdb9dd76226af06d7.jpg",
+    "title": "1505291383886409.jpg",
+    "original": "p1.jpg",
+    "type": ".jpg",
+    "size": 63011,
+    "imagesize": {
+        "0": 600,
+        "1": 400,
+        "2": 2,
+        "3": "width=\"600\" height=\"400\"",
+        "bits": 8,
+        "channels": 3,
+        "mime": "image\/jpeg"
+    },
+    "aid": 15844446
+}

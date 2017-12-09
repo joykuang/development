@@ -101,3 +101,6 @@
 ## Google Fonts Replacement CDN
 - http://cdn.geekzu.org/cached.html
 - https://lug.ustc.edu.cn/wiki/lug/services/googlefonts
+
+## Vue Component Plugins
+- https://github.com/ElemeFE/vue-infinite-scroll

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+    	<meta zhet="utf-8">
+    	<title>编辑器</title>
+    	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    	<meta name="apple-mobile-web-app-capable" content="yes">
+    	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+    	<meta name="format-detection" content="telephone=no">
+    	<meta name="format-detection" content="email=no">
+    	<link href="/assets/3rd-party/uikit/dist/css/uikit.min.css" rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="http://s1.bbs.xiaomi.cn/statics/css/zh-cn/index.css?{:time()}">
+        <link rel="stylesheet" type="text/css" href="http://s1.bbs.xiaomi.cn/statics/css/zh-cn/postadvanced.css?{:time()}">
+
+    	<style>
+            [v-hidden],
+    		[v-cloak] {
+    			display: none;
+    		}
+
+            .edui-for-preview .edui-icon {
+                background-image: url(/assets/script/ueditor-xm/icon-preview.png) !important;
+                background-position: center !important;
+                background-size: 30px 30px;
+            }
+
+            .edui-for-preview .edui-dialog-body {
+                padding-bottom: 20px !important;
+            }
+
+            .edui-for-preview .edui-dialog-content {
+                padding-top: 10px !important;
+            }
+
+            .CodeMirror-cursor {
+                height: 13px !important;
+                overflow: hidden;
+                margin-left: 2px;
+            }
+
+            .edui-default .edui-colorpicker-nocolor {
+                line-height: 12px !important;
+                height: 20px !important;
+            }
+    	</style>
+    </head>
+    <body>
+
+        <div id="app">
+            <div class="uk-container uk-margin-top">
+                <form>
+                    <fieldset class="uk-fieldset">
+
+                        <legend class="uk-legend">编辑器</legend>
+
+                        <div class="uk-margin">
+                            <input class="uk-input" type="text" placeholder="博文标题 ...">
+                        </div>
+
+                        <div class="uk-margin">
+                            <select class="uk-select">
+                                <option>默认分类</option>
+                                <option>技术文章</option>
+                            </select>
+                        </div>
+
+                        <div class="uk-margin">
+                            <textarea id="editor" class0="uk-textarea" style="height: 320px;" placeholder="尽情的书写吧 ..." v-hidden></textarea>
+                        </div>
+
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+
+        <script src="/assets/3rd-party/jquery/dist/jquery.min.js" type="text/javascript"></script>
+        <script src="/assets/3rd-party/uikit/dist/js/uikit.min.js" type="text/javascript"></script>
+        <script src="/assets/script/ueditor-xm/ueditor.config.js" type="text/javascript"></script>
+        <script src="/assets/script/ueditor-xm/ueditor.all.js" type="text/javascript"></script>
+        <script src="/assets/script/ueditor-xm/dialog.js" type="text/javascript"></script>
+        <script src="/assets/script/ueditor-xm/zh-cn.js" type="text/javascript"></script>
+
+        <script>
+            window.onload = function() {
+                window.Editor = UE.getEditor('editor');
+            };
+        </script>
+
+        <!--
+        <script src="/assets/script/ckeditor5/ckeditor.js" type="text/javascript"></script>
+        <script>
+            (function(win) {
+
+                function domReady() {
+
+                    var el = document.querySelector('#editor');
+                    var cf = {
+                        height: 500
+                    };
+
+                    ClassicEditor.create(el, cf)
+                        .then(function(editor) {
+                            win.Editor = editor;
+                        }).catch(function(err) {
+                            console.error(err.stack);
+                        });
+
+                }
+
+                win.onload = domReady;
+
+            })(window);
+        </script>
+        -->
+    </body>
+</html>

@@ -11,7 +11,7 @@
 
 return [
     'type' => 'sqlite',
-    'database' => realpath(__DIR__ . '/../database.sdb'),
+    'database' => dirname(__DIR__) . '/database/database.sdb',
     'prefix' => 'jkc_',
     'auto_timestamp' => true,
     'debug' => true

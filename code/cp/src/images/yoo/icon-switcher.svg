@@ -1,0 +1,8 @@
+<svg version="1.1" id="switcher" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="30px" height="30px" viewBox="0 0 30 30" enable-background="new 0 0 30 30" xml:space="preserve">
+<path fill="#FFFFFF" d="M10.5,6l2.7,3.6l0.3,0.4H14h14v15H2V6H10.5 M11,5H1v21h28V9H14L11,5L11,5z"/>
+<rect x="15" y="5" fill="#FFFFFF" width="6" height="1"/>
+<rect x="5" y="14" fill="#FFFFFF" width="10" height="1"/>
+<rect x="5" y="17" fill="#FFFFFF" width="13" height="1"/>
+<rect x="23" y="5" fill="#FFFFFF" width="6" height="1"/>
+</svg>

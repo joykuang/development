@@ -2,4 +2,4 @@
 
 <?php
 
-require __DIR__ . '/packages/doctrine/orm/bin/doctrine.php';
+require __DIR__ . '/thoughts/packages/doctrine/orm/bin/doctrine.php';

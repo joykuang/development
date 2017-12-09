@@ -1,0 +1,6 @@
+<svg version="1.1" id="map" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="30px" height="30px" viewBox="0 0 30 30" enable-background="new 0 0 30 30" xml:space="preserve">
+<path fill-rule="evenodd" clip-rule="evenodd" fill="none" stroke="#FFFFFF" stroke-miterlimit="10" d="M15,1C9.5,1,5,5.4,5,10.8
+	C5,18.1,15,29,15,29s10-10.9,10-18.2C25,5.4,20.5,1,15,1z"/>
+<circle fill="none" stroke="#FFFFFF" stroke-miterlimit="10" cx="15" cy="10.5" r="3.5"/>
+</svg>

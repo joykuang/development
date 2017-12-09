@@ -2,11 +2,12 @@
   "name": "tp51",
   "dependencies": {
     "jquery": "^3.2.1",
-    "uikit": "^3.*",
+    "uikit": "^3.0",
     "vue": "^2.4.4",
     "tinymce": "^4.6.7",
     "codemirror": "^5.30.0",
     "animejs": "^2.2.0",
-    "ckeditor": "^4.7.3"
+    "ckeditor": "^4.7.3",
+    "axios": "^0.17.1"
   }
 }

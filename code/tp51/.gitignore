@@ -1,3 +1,4 @@
+public/assets/library/
 public/assets/upload/
 packages/
 runtime/
@@ -5,4 +6,3 @@ runtime/
 composer.lock
 composer-inc.json
 debug_backtrace.json
-

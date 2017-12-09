@@ -14,7 +14,7 @@ class Whoops extends Moduler
     protected $settings;
 
     public function boot() {
-        
+
         $this->settings = Config::get();
         ini_set('error_log', realpath(App::getRuntimePath()) . '/log/php_errors.log');
         Config::set('exception_handle', Whoops\Exception\ErrorException::class);
@@ -26,8 +26,9 @@ class Whoops extends Moduler
         $think = [];
         foreach($this->settings as $key => $value) {
           $pretty = json_encode($value, JSON_PRETTY_PRINT);
-          $pretty = str_replace(" ", "&nbsp;", $pretty);
-          $think[$key] = str_replace("\n", "<br>", $pretty);
+          //$pretty = str_replace(" ", "&nbsp;", $pretty);
+          //$think[$key] = str_replace("\n", "<br>", $pretty);
+          $think[$key] = str_replace("\n", "", $pretty);
         }
         $think['THINK_VERSION'] = App::version();
         $handle->addDataTable('ThinkPHP Configuration', $think);

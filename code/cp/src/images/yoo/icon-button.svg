@@ -1,0 +1,6 @@
+<svg version="1.1" id="button" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="30px" height="30px" viewBox="0 0 30 30" enable-background="new 0 0 30 30" xml:space="preserve">
+<path fill="#FFFFFF" d="M20.051,26.617l-3.209-5.739l-3.149,1.757L12.435,7.127l12.409,9.445l-3.139,1.75l3.225,5.766L20.051,26.617
+	z M17.229,19.518l3.223,5.766l3.102-1.609l-3.209-5.738l2.68-1.492l-9.411-7.162l0.951,11.723L17.229,19.518z"/>
+<path fill="#FFFFFF" d="M0,3v15h9v-1H1V4h28v13h-2v1h3V3H0z"/>
+</svg>

@@ -1,7 +1,15 @@
 {
-	"name": "tp51",
-	"scripts": {
-		"less": "lessc src/ukmod.less public/assets/style/ukmod.css -x",
-		"zip": "composer archive --file=site --format=zip"
-	}
+    "name": "tp51",
+    "license": "MIT",
+    "scripts": {
+        "less": "lessc thoughts/resources/less/ukmod.less public/assets/style/ukmod.css -x",
+        "zip": "composer archive --file=site --format=zip",
+        "orm:map": "php doctrine.php orm:mapping:describe",
+        "orm:info": "php doctrine.php orm:info",
+        "orm:schema": "php doctrine.php orm:validate-schema",
+        "dev": "php -S dev.io:80 -t public thoughts/router.php"
+    },
+    "dependencies": {
+        "@ckeditor/ckeditor5-build-classic": "^1.0.0-alpha.2"
+    }
 }

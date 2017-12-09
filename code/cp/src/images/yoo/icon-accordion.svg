@@ -1,0 +1,9 @@
+<svg version="1.1" id="accordion" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="30px" height="30px" viewBox="0 0 30 30" enable-background="new 0 0 30 30" xml:space="preserve">
+<g>
+	<path fill="#FFFFFF" d="M28,8v10H2V8H28 M29,7H1v12h28V7L29,7z"/>
+</g>
+<rect x="1" y="22" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" width="28" height="1"/>
+<rect x="1" y="26" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" width="28" height="1"/>
+<rect x="1" y="3" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" width="28" height="1"/>
+</svg>

@@ -8,7 +8,7 @@ use think\Container;
 define('APP_PATH', __DIR__ . '/local/');
 
 $init = require __DIR__ . '/thoughts/bootstrap.php';
-$init->path(__DIR__ . '/packages');
+$init->path(__DIR__ . '/thoughts/packages');
 
 Container::get('app', [APP_PATH])->initialize();
 Console::init();

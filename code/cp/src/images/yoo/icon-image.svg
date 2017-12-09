@@ -1,0 +1,10 @@
+<svg version="1.1" id="image" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="30px" height="30px" viewBox="0 0 30 30" enable-background="new 0 0 30 30" xml:space="preserve">
+<polyline fill="none" stroke="#FFFFFF" stroke-miterlimit="10" points="6.792,19.322 12.262,13.845 19.108,20.69 "/>
+<path fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" d="M22.504,9C23.325,9,24,9.672,24,10.502
+	C24,11.328,23.325,12,22.504,12C21.674,12,21,11.329,21,10.502C21,9.672,21.674,9,22.504,9z"/>
+<polyline fill="none" stroke="#FFFFFF" stroke-miterlimit="10" points="16.37,17.953 18.425,15.897 23.208,20.69 "/>
+<g>
+	<path fill="#FFFFFF" d="M28,5v20H2V5H28 M29,4H1v22h28V4L29,4z"/>
+</g>
+</svg>

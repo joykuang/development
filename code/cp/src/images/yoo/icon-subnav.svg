@@ -1,0 +1,8 @@
+<svg version="1.1" id="subnav" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="30px" height="30px" viewBox="0 0 30 30" enable-background="new 0 0 30 30" xml:space="preserve">
+<rect x="24" y="14" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" width="6" height="1"/>
+<rect x="15" y="14" fill-rule="evenodd" clip-rule="evenodd" fill="#FFFFFF" width="6" height="1"/>
+<g>
+	<path fill="#FFFFFF" d="M10,13v3H1v-3H10 M11,12H0v5h11V12L11,12z"/>
+</g>
+</svg>

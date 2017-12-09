@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>插入隐藏内容</title>
+    <script type="text/javascript" src="../internal.js"></script>
+    <link rel="stylesheet" type="text/css" href="hide.css">
+</head>
+
+<body>
+    <textarea id='J_hide'></textarea>
+    <script>
+        // editor.execCommand('hide', {
+        //           con:$G("J_hide").value
+        //       });
+        //
+        dialog.onok = function(argument) {
+            editor.execCommand('hide', {
+                con: $G("J_hide").value
+            });
+        }
+    </script>
+</body>
+
+</html>

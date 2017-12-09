@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta zhet="utf-8">
+    <title>编辑器</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="format-detection" content="email=no">
+    <link href="/assets/library/uikit/dist/css/uikit.min.css" rel="stylesheet">
+    <style>
+        [v-hidden],
+        [v-cloak] {
+            display: none;
+        }
+
+        /*.mce-btn,
+        .mce-window,
+        .mce-tooltip-inner {
+            border-radius: 4px;
+        }
+
+        .mce-window {
+            overflow: hidden;
+        }*/
+    </style>
+</head>
+
+<body>
+    <literal>
+        <div id="app">
+
+            <div class="uk-container uk-margin-top">
+
+                <form>
+
+                    <fieldset class="uk-fieldset">
+
+                        <legend class="uk-legend">编辑器</legend>
+
+                        <div class="uk-margin">
+                            <input class="uk-input" type="text" placeholder="博文标题 ..." v-model="field_title">
+                        </div>
+
+                        <div class="uk-margin">
+                            <input class="uk-input" type="text" placeholder="固定连接 http://dev.io/post/{slug}.html" v-model="field_slug">
+                        </div>
+
+                        <div class="uk-margin">
+                            <select class="uk-select" v-model="field_taxonomy">
+                                <option v-for=" (item, count) in taxonomies " :value="item.taxonomy_id">{{ item.taxonomy_name }}</option>
+                            </select>
+                        </div>
+
+                        <div class="uk-margin">
+                            <textarea id="editor" class="uk-textarea" style="height: 320px;" placeholder="尽情的书写吧 ..." v-model="content"></textarea>
+                        </div>
+
+                        <div class="uk-margin">
+                            <textarea class="uk-textarea" style="height: 160px;" placeholder="文章梗概/说明/简介 ..." v-model="field_excerpt"></textarea>
+                        </div>
+
+                        <div class="uk-margin">
+                            <select class="uk-select" v-model="field_status">
+                                <option v-for=" (item, count) in allStatus " :value="item.value">{{ item.label }}</option>
+                            </select>
+                        </div>
+
+                        <div class="uk-margin" v-if=" field_status === 'published' ">
+                            <input class="uk-input" type="text" placeholder="访问密码 ..." v-model="field_password">
+                        </div>
+
+                        <div class="uk-margin">
+                            <a class="uk-button uk-button-primary" href="javascript:;" @click="newAndSave()">新增</a>
+                        </div>
+
+                    </fieldset>
+
+                </form>
+
+            </div>
+
+        </div>
+    </literal>
+    <script src="/assets/library/tinymce/tinymce.min.js" type="text/javascript"></script>
+    <script src="/assets/library/axios/dist/axios.min.js" type="text/javascript"></script>
+    <script src="/assets/library/vue/dist/vue.js" type="text/javascript"></script>
+    <script src="/assets/library/uikit/dist/js/uikit.min.js" type="text/javascript"></script>
+
+    <script>
+        (function(win) {
+
+            win.Url = {
+                post: '/post',
+                user: '/user',
+                taxonomy: '/taxonomy',
+
+                editPost: '/post/save',
+                editUser: '/user/save',
+                editTaxonomy: '/taxonomy/save',
+            };
+
+            function domReady() {
+                win.App = new Vue({
+                    el: '#app',
+
+                    data: {
+                        field_title: '',
+                        field_slug: '',
+                        field_excerpt: '',
+                        field_taxonomy: '',
+                        field_password: '',
+                        field_status: 'published',
+
+                        allStatus: null,
+                        posts: [],
+                        taxonomies: [],
+                        content: ''
+                    },
+
+                    methods: {
+
+                        newAndSave: function() {
+                            var vm = this;
+                            var id = 0,
+                                title = vm.field_title,
+                                slug = vm.field_slug,
+                                excerpt = vm.field_excerpt,
+                                taxonomy = vm.field_taxonomy,
+                                password = vm.field_password,
+                                status = vm.field_status,
+                                content = tinymce.activeEditor.getContent();
+
+                            // TODO: 验证数据
+
+                            var xhr = {
+                                headers: {
+                                    'Content-Type': 'application/x-www-form-urlencoded'
+                                }
+                            };
+
+                            var send = new URLSearchParams();
+                            send.append('id', id);
+                            send.append('title', title);
+                            send.append('slug', slug);
+                            send.append('excerpt', excerpt);
+                            send.append('taxonomy', taxonomy);
+                            send.append('password', password);
+                            send.append('status', status);
+                            send.append('content', content);
+
+                            axios.post(Url.editPost, send, xhr).then(function(res) {
+                                var data = res.data;
+                                //if (data.error) return;
+
+                                console.log(data);
+                            });
+
+                        }
+
+                    },
+
+                    mounted: function() {
+                        var vm = this;
+                        initEditor();
+
+                        vm.allStatus = [
+                            { label: '公开', value: 'published', name: 'published' },
+                            { label: '私密', value: 'private', name: 'private' },
+                            { label: '草稿', value: 'draft', name: 'draft' }
+                        ];
+
+                        axios.get(Url.taxonomy).then(function(res) {
+                            var data = res.data;
+                            if (data.error) return;
+
+                            vm.taxonomies = data.result;
+                        });
+                    }
+                });
+            }
+
+            function initEditor() {
+                tinymce.init({
+                    selector: '#editor',
+                    theme: 'modern',
+                    //width: 600,
+                    //height: 300,
+                    plugins: [
+                        'advlist autolink link image lists charmap preview hr anchor pagebreak',
+                        'searchreplace wordcount visualblocks visualchars code fullscreen insertdatetime media nonbreaking',
+                        'save table contextmenu directionality template paste textcolor'
+                    ],
+                    //content_css: 'css/content.css',
+                    branding: false,
+                    menubar: false,
+                    toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link table image media | forecolor backcolor | code preview fullscreen',
+                    language_url: '/assets/script/tinymce/zh_CN.js',
+
+                    //init_instance_callback: function(editor) {
+                    //    win.Editor = tinymce.activeEditor;
+                    //}
+
+                });
+            }
+
+
+            win.onload = domReady;
+
+        })(window);
+    </script>
+
+</body>
+
+</html>

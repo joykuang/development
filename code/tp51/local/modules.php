@@ -8,7 +8,7 @@ $module = [
     'helper' => YRS\Moduler\Helper::class,
     //'alioss' => YRS\Moduler\AliOss::class,
     'whoops' => YRS\Moduler\Whoops::class,
-    'doctrine' => YRS\Moduler\Doctrine::class,
+    //'doctrine' => YRS\Moduler\Doctrine::class,
     'mysqldb' => YRS\Moduler\MysqlDatabase::class
 ];
 

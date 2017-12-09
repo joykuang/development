@@ -11,6 +11,8 @@ class Thoughts
 
         require_once realpath($composer) . '/autoload.php';
 
+        \YRS\DebugBar::start(dirname(__DIR__) . '/runtime/debugbar');
+
         $loader = new Loader;
         $loader->addPsr4('think\\', $tplibs . '/think');
         $loader->addPsr4('traits\\', $tplibs . '/traits');
