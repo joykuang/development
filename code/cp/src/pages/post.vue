@@ -20,7 +20,7 @@
                                         :class=" [ /*'ui-dataset-' + item.field,*/ { 'ui-sortable': item.sortable, 'ui-sortable-current': sort === item.field, 'ui-sortable-desc': sort === item.field && sortOrder === 'desc' } ] "
                                         @click=" item.sortable ? sortableHandle(item) : undefined ">
                                         <span>{{ item.label }}</span>
-                                        <span class="ui-sortable-handle" v-if=" item.sortable "><icon class="ui-icon" icon="arrow-down-alt2"></icon></span>
+                                        <span class="ui-sortable-handle" v-if=" item.sortable "><icon class="ui-icon" icon="caret-down"></icon></span>
                                     </th>
 
                                 </template>
@@ -54,7 +54,7 @@
 
                                 <th>
                                     <div class="action-more">
-                                        <icon class="ui-icon" icon="ellipsis"></icon>
+                                        <icon class="ui-icon" icon="ellipsis-h"></icon>
                                         <dropdown uk="mode: click" :menu="dropdown"></dropdown>
                                     </div>
                                 </th>
@@ -98,7 +98,7 @@ const URL_POST = '/api/post.json'
 var {ajax, each} = UIkit.util
 var {orderBy} = _
 
-import Icon from '../component/icon.vue'
+import Icon from '../component/fa5-icon.vue'
 import Dropdown from '../component/dropdown.vue'
 
 import BackendTopbar from '../frames/backend__topbar.vue'
@@ -173,7 +173,7 @@ export default {
 
         getSelectAll() {
             return this.selected.length === this.items.length ? [] : this.items.map(function(item) {
-                return item.post_id
+                return item.postID
             })
         },
 

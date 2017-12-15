@@ -57,16 +57,11 @@
 
 <script>
 
-import Icon from '../component/icon.vue'
-import Dropdown from '../component/dropdown.vue'
-
 import BackendTopbar from '../frames/backend__topbar.vue'
 import BackendCaption from '../frames/backend__caption.vue'
 
 export default {
     components: {
-        Icon,
-        Dropdown,
         BackendTopbar,
         BackendCaption
     },

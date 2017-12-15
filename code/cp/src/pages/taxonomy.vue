@@ -29,7 +29,7 @@
                                 <td>/{{ item.taxonomy_slug }}</td>
                                 <th>
                                     <div class="action-more">
-                                        <icon class="ui-icon" icon="ellipsis"></icon>
+                                        <icon class="ui-icon" icon="ellipsis-h"></icon>
                                         <dropdown uk="mode: click" :menu="dropdown"></dropdown>
                                     </div>
                                 </th>
@@ -51,7 +51,7 @@ const URL_TAXONOMY = '/api/taxonomy.json'
 import UIkit from 'uikit'
 const $ajax = UIkit.util.ajax
 
-import Icon from '../component/icon.vue'
+import Icon from '../component/fa5-icon.vue'
 import Dropdown from '../component/dropdown.vue'
 
 import BackendTopbar from '../frames/backend__topbar.vue'

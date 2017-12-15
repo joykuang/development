@@ -36,7 +36,10 @@ export default {
             let icon = dom.querySelectorAll('symbol')
             let name = []
 
-            for (let i in icon) { name.push(icon[i].id) }
+            for (let i in icon) {
+                if (!icon[i].id) continue
+                name.push(icon[i].id)
+            }
 
             vm.icon = name
         });

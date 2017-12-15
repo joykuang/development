@@ -1,0 +1,5 @@
+#!/usr/bin/env node
+
+yarn add axios lodash uikit vue vue-router
+
+yarn add babel-core babel-loader babel-preset-env cross-env css-loader extract-text-webpack-plugin file-loader less less-loader optimize-css-assets-webpack-plugin pug pug-loader vue-loader vue-template-compiler webpack webpack-dev-server --dev

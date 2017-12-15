@@ -31,7 +31,7 @@
         }
 
         .sql {
-            text-align: center;
+            /*text-align: center;*/
             margin-top: 32px;
         }
         </style>
@@ -50,7 +50,8 @@
                 {/volist}
             </table>
 
-            <p class="sql">[SQL] {$sql|str_replace="`","",###}</p>
+            <p class="sql" style="margin-bottom: 32px;">[SQL] {$sql|str_replace="`","",###}</p>
+            <pre><?=\think\Db::query('SHOW CREATE TABLE `tp51`.`jkc_posts`')[0]['Create Table']?></pre>
         </div>
         <script src="/_debugbar/resources/axios.min.js" type="text/javascript"></script>
         <script src="/_debugbar/resources/vue.min.js" type="text/javascript"></script>

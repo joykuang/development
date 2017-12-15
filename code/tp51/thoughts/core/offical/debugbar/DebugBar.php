@@ -25,6 +25,8 @@ class DebugBar
 
     public static function start($base)
     {
+        if (PHP_SAPI === 'cli') return false;
+
         if (!is_dir($base)) {
             // TODO: 检测文件夹是否存在以及能否创建
             // throw new Exception("Error path", 1);
@@ -55,6 +57,8 @@ class DebugBar
 
     public static function write($data, $group = 'default')
     {
+        if (PHP_SAPI === 'cli') return false;
+
         $file = self::$file;
 
         if (is_null($file)) throw new Exception("Please Debug::start() first", 1);
@@ -68,11 +72,13 @@ class DebugBar
 
     public static function add($data, $group = 'default')
     {
+        if (PHP_SAPI === 'cli') return false;
         self::$json[$group] = $data;
     }
 
     public static function end()
     {
+        if (PHP_SAPI === 'cli') return false;
         $file = self::$file;
 
         if (is_null($file)) throw new Exception("Please Debug::start() first", 1);

@@ -8,7 +8,7 @@
     </div>
     <div class="ui-topbar-item">
         <div class="ui-view-site" title="查看网站" uk-tooltip="pos: left">
-            <icon class="ui-search-icon" icon="external"></icon>
+            <icon class="ui-search-icon" icon="external-link-alt"></icon>
         </div>
         <div class="ui-view-user">
             <img src="/src/images/man.png">
@@ -19,14 +19,7 @@
 </template>
 
 <script>
-import Icon from '../component/icon.vue'
-import Dropdown from '../component/dropdown.vue'
-
 export default {
-    components: {
-        Icon,
-        Dropdown
-    },
     data() {
         return {
             dropdown: [

@@ -92,7 +92,7 @@ class Post extends Api
             'user' => []
         ];
 
-        $post = Posts::with($with)->where(['post_id' => $post_id])->find();
+        $post = Posts::with($with)->where(['post_id' => $post_id])->cache(true)->find();
 
         $output = [
             'error' => is_null($post) ? 1 : 0,
