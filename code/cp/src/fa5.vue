@@ -1,12 +1,12 @@
 <template>
-    <div class="fa5">
-        <div class="fa5-icons">
-            <div class="fa5-svg" v-for="(item, key) in fa5">
-                <svg class="fa5-icon" :viewBox="item.view"><path :d="item.path" /></svg>
-                <div class="fa5-name">{{ item.name }}</div>
-            </div>
+<div class="fa5">
+    <div class="fa5-icons">
+        <div class="fa5-svg" v-for="(item, key) in fa5">
+            <svg class="fa5-icon" :viewBox="item.view"><path :d="item.path" /></svg>
+            <div class="fa5-name">{{ item.name }}</div>
         </div>
     </div>
+</div>
 </template>
 
 <script>
@@ -19,11 +19,9 @@ export default {
         }
     }
 }
-
 </script>
 
 <style lang="less">
-
 .app {
     height: 100%;
     overflow: auto;
@@ -65,11 +63,14 @@ export default {
 }
 
 @media (min-width: 1900px) {
-    .fa5-svg { width: 10%; }
+    .fa5-svg {
+        width: 10%;
+    }
 }
 
 @media (min-width: 2540px) {
-    .fa5-svg { width: 6.25%; }
+    .fa5-svg {
+        width: 6.25%;
+    }
 }
-
 </style>
