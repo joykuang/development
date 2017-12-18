@@ -6,3 +6,5 @@ packages/
 vendor/
 
 # Global Files
+
+.DS_Store
