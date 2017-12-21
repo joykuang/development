@@ -3,6 +3,8 @@
 </template>
 
 <script>
+window.uiIcons = window.uiIcons || {}
+
 const fa5 = require('../data/fa5-free.json')
 
 export default {
@@ -20,6 +22,9 @@ export default {
 
             return icon
         }
+    },
+    mounted() {
+        window.uiIcons[this.icon] = 1
     }
 }
 </script>

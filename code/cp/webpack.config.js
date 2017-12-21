@@ -13,72 +13,41 @@ const externals = {
     'vue-router': 'VueRouter'
 }
 
-module.exports = [
-    {
-        entry: './src/main.js',
-        output: {
-            path: path.resolve(__dirname, './dist'),
-            publicPath: '/dist/',
-            filename: 'build.js'
-        },
-        externals,
-        module: {
-            rules: [
-                { test: /\.vue$/, loader: 'vue-loader', options: extra.vue },
-                { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
-                { test: /\.(png|jpg|gif|svg)$/, loader: 'file-loader', options: extra.file }
-            ]
-        },
-        resolve: {
-            alias: {
-                'vue$': 'vue/dist/vue.esm.js',
-                'vuex$': 'vue/dist/vuex.esm.js',
-                'vue-router$': 'vue-router/dist/vue-router.esm.js'
-            }
-        },
-        devServer: {
-            historyApiFallback: true,
-            noInfo: true,
-            overlay: true
-        },
-        performance: {
-            hints: false
-        },
-        //devtool: '#eval-source-map'
+module.exports = {
+    entry: {
+        main: './src/main.js',
+        app: './app/src/app.js',
     },
-    {
-        entry: './app/src/app.js',
-        output: {
-            path: path.resolve(__dirname, './dist'),
-            publicPath: '/dist/',
-            filename: 'app.js'
-        },
-        externals,
-        module: {
-            rules: [
-                { test: /\.vue$/, loader: 'vue-loader', options: extra.vue },
-                { test: /\.pug$/, loader: 'pug' },
-                { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
-                { test: /\.(png|jpg|gif|svg)$/, loader: 'file-loader', options: extra.file }
-            ]
-        },
-        resolve: {
-            alias: {
-                'vue$': 'vue/dist/vue.esm.js',
-                'vue-router$': 'vue-router/dist/vue-router.esm.js'
-            }
-        },
-        devServer: {
-            historyApiFallback: true,
-            noInfo: true,
-            overlay: true
-        },
-        performance: {
-            hints: false
-        },
-        //devtool: '#eval-source-map'
-    }
-]
+    output: {
+        path: path.resolve(__dirname, './dist'),
+        publicPath: '/dist/',
+        filename: '[name].js'
+    },
+    externals,
+    module: {
+        rules: [
+            { test: /\.vue$/, loader: 'vue-loader', options: extra.vue },
+            { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/ },
+            { test: /\.(png|jpg|gif|svg)$/, loader: 'file-loader', options: extra.file }
+        ]
+    },
+    resolve: {
+        alias: {
+            'vue$': 'vue/dist/vue.esm.js',
+            'vuex$': 'vue/dist/vuex.esm.js',
+            'vue-router$': 'vue-router/dist/vue-router.esm.js'
+        }
+    },
+    devServer: {
+        historyApiFallback: true,
+        noInfo: true,
+        overlay: true
+    },
+    performance: {
+        hints: false
+    },
+    //devtool: '#eval-source-map'
+}
 
 if (process.env.NODE_ENV === 'production') {
 
@@ -88,7 +57,7 @@ if (process.env.NODE_ENV === 'production') {
     //module.exports.devtool = '#source-map'
     // http://vue-loader.vuejs.org/en/workflow/production.html
 
-    module.exports = module.exports[0]
+    //module.exports = module.exports[0]
 
     module.exports.module.rules[0].options.loaders.less = ExtractTextPlugin.extract({
         use: 'css-loader!less-loader',
@@ -110,7 +79,7 @@ if (process.env.NODE_ENV === 'production') {
         new webpack.LoaderOptionsPlugin({
             minimize: true
         }),
-        new ExtractTextPlugin('build.css'),
+        new ExtractTextPlugin('[name].min.css'),
         new OptimizeCSSPlugin({cssProcessorOptions:{safe:true}}),
     ])
 }
